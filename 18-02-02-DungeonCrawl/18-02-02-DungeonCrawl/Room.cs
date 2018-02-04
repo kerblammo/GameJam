@@ -135,7 +135,7 @@ namespace _18_02_02_DungeonCrawl
             //If there is no tilemap, get one
             if (TileMap == null)
             {
-                TileMap = Tilemaps.PopulateIDs(0);
+                TileMap = Tilemaps.PopulateIDs(1);
             }
 
             //populate each tile, according to tilemap

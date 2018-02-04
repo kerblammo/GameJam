@@ -17,36 +17,78 @@ namespace _18_02_02_DungeonCrawl
             InitializeComponent();
         }
 
+        bool isFormLoaded = false;
+        bool paintRoom = false;
+        bool paintPlayer = false;
+        int currentRoom;
+        OverMap map = new OverMap();
+        Player player = new Player();
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            OverMap map = new OverMap(10);
+            isFormLoaded = true;
+            map = new OverMap(10);
+            currentRoom = 0;
+            paintRoom = true;
+            paintPlayer = true;
             
-            foreach(List<Tile> row in map.Rooms[0].RowList)
+        }
+
+
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (isFormLoaded)   //nothing happens until form is loaded
             {
-                foreach (Tile tile in row)
+                
+                if (paintRoom)  //it is now time to paint the room
                 {
-                    string tilename;
-                    switch (tile.Type)
+                    //draw each tile in the room
+                    foreach (List<Tile> row in map.Rooms[currentRoom].RowList)
                     {
-                        case MyEnums.TileCollisions.Wall:
-                            tilename = "Wall";
-                            break;
-                        case MyEnums.TileCollisions.Empty:
-                            tilename = "Empty";
-                            break;
-                        case MyEnums.TileCollisions.Obstacle:
-                            tilename = "Obstacle";
-                            break;
-                        case MyEnums.TileCollisions.Pit:
-                            tilename = "Pit";
-                            break;
-                        default:
-                            tilename = "SOMETHING WENT WRONG";
-                            break;
+                        foreach (Tile tile in row)
+                        {
+                            e.Graphics.DrawImage(tile.Sprite, tile.Origin);
+                        }
                     }
-                    MessageBox.Show(tilename + "\nX:" + tile.X + "\nY:" + tile.Y);
                 }
+                if (paintPlayer)    //it is now time to paint the player
+                {
+                    e.Graphics.DrawImage(player.Sprite, player.Origin);
+                }
+
             }
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //player controls
+            bool playerMoved = false;
+            switch (e.KeyChar.ToString().ToUpper())
+            {
+                case "W":
+                    player.MoveUp();
+                    playerMoved = true;
+                    break;
+                case "S":
+                    player.MoveDown();
+                    playerMoved = true;
+                    break;
+                case "A":
+                    player.MoveLeft();
+                    playerMoved = true;
+                    break;
+                case "D":
+                    player.MoveRight();
+                    playerMoved = true;
+                    break;
+            }
+            if (playerMoved)    //if the player moved, repaint it
+            {
+                Invalidate(player.PaintMaskOld);
+                Invalidate(player.PaintMask);
+            }
+            
         }
     }
 }

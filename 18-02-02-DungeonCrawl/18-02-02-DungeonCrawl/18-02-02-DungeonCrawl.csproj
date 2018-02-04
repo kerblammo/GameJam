@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="MyEnums.cs" />
     <Compile Include="OverMap.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
@@ -105,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TileStairDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
