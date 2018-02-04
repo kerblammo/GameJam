@@ -124,11 +124,24 @@ namespace _18_02_02_DungeonCrawl
                 {
                     break;
                 }
-                
-                
-                
             }
-            
+
+            //Finished creating map, must now determine starting/ending rooms
+            int roomFirst = rand.Next(0, Rooms.Count);
+            int roomLast = rand.Next(0, Rooms.Count);
+            while (roomLast == roomFirst) //ensure these rooms don't match
+            {
+                roomLast = rand.Next(0, Rooms.Count);
+            }
+            Rooms[roomFirst].StartRoom = true;
+            Rooms[roomLast].FinishRoom = true;
+
+            //determine tilemaps for each room
+            foreach (Room rm in Rooms)
+            {
+                rm.PopulateTiles();  
+            }
+        
 
 
 

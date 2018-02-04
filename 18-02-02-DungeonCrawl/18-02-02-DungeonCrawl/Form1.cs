@@ -19,11 +19,33 @@ namespace _18_02_02_DungeonCrawl
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            OverMap map = new OverMap(6);
-            foreach (var room in map.Rooms)
+            OverMap map = new OverMap(10);
+            
+            foreach(List<Tile> row in map.Rooms[0].RowList)
             {
-                string coords = "X: " + room.X + "\nY: " + room.Y + "\nID: " + room.ID;
-                MessageBox.Show(coords);
+                foreach (Tile tile in row)
+                {
+                    string tilename;
+                    switch (tile.Type)
+                    {
+                        case MyEnums.TileCollisions.Wall:
+                            tilename = "Wall";
+                            break;
+                        case MyEnums.TileCollisions.Empty:
+                            tilename = "Empty";
+                            break;
+                        case MyEnums.TileCollisions.Obstacle:
+                            tilename = "Obstacle";
+                            break;
+                        case MyEnums.TileCollisions.Pit:
+                            tilename = "Pit";
+                            break;
+                        default:
+                            tilename = "SOMETHING WENT WRONG";
+                            break;
+                    }
+                    MessageBox.Show(tilename + "\nX:" + tile.X + "\nY:" + tile.Y);
+                }
             }
         }
     }

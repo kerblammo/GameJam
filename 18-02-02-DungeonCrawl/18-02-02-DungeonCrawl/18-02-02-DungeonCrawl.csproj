@@ -52,10 +52,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyEnums.cs" />
     <Compile Include="OverMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="Tilemaps.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -67,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -80,6 +84,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileEmpty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileWall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileObstacle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TilePit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileStairUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileStairDown.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileStairDown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
