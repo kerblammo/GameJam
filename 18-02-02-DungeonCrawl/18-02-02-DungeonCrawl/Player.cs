@@ -18,6 +18,7 @@ namespace _18_02_02_DungeonCrawl
         public Rectangle PaintMask { get; set; }
         public Rectangle PaintMaskOld { get; set; }
         public Size PaintSize { get; set; }
+        public Room CurrentRoom { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         
@@ -25,27 +26,42 @@ namespace _18_02_02_DungeonCrawl
         //move methods move the player, and update its paintmask
         public void MoveUp()
         {
-            Y -= Sprite.Height;
-            Moved();
+            if (LegalMove(X, Y - Sprite.Height, this))
+            {
+                Y -= Sprite.Height;
+                Moved();
+            }
+            
             
         }
 
         public void MoveDown()
         {
-            Y += Sprite.Height;
-            Moved();
+            if (LegalMove(X, Y + Sprite.Height, this))
+            {
+                Y += Sprite.Height;
+                Moved();
+            }
+            
         }
 
         public void MoveLeft()
         {
-            X -= Sprite.Width;
-            Moved();
+            if (LegalMove(X - Sprite.Width, Y, this))
+            {
+                X -= Sprite.Width;
+                Moved();
+            }
         }
 
         public void MoveRight()
         {
-            X += Sprite.Width;
-            Moved();
+            if (LegalMove(X + Sprite.Width, Y, this))
+            {
+                X += Sprite.Width;
+                Moved();
+            }
+            
         }
 
         //moved method updates the paintmask
@@ -54,6 +70,20 @@ namespace _18_02_02_DungeonCrawl
             Origin = new Point(X, Y);
             PaintMaskOld = PaintMask;
             PaintMask = new Rectangle(Origin, PaintSize);
+        }
+
+        //checks if player can legally move
+        private bool LegalMove(int x, int y, Player player)
+        {
+            bool isLegal = true;
+            MyEnums.TileCollisions tileToCheck = player.CurrentRoom.RowList[y / player.Sprite.Height][x / player.Sprite.Width].Type;
+            if (tileToCheck == MyEnums.TileCollisions.Obstacle
+                || tileToCheck == MyEnums.TileCollisions.Pit 
+                || tileToCheck == MyEnums.TileCollisions.Wall)
+            {
+                isLegal = false;
+            }
+            return isLegal;
         }
         
         //Constructor

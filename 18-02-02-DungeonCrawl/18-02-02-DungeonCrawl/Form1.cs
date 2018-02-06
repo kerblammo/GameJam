@@ -29,6 +29,7 @@ namespace _18_02_02_DungeonCrawl
             isFormLoaded = true;
             map = new OverMap(10);
             currentRoom = 0;
+            player.CurrentRoom = map.Rooms[currentRoom];
             paintRoom = true;
             paintPlayer = true;
             
