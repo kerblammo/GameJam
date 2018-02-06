@@ -65,7 +65,7 @@ namespace _18_02_02_DungeonCrawl
         }
 
         //moved method updates the paintmask
-        private void Moved()
+        public void Moved()
         {
             Origin = new Point(X, Y);
             PaintMaskOld = PaintMask;
@@ -85,6 +85,7 @@ namespace _18_02_02_DungeonCrawl
                 {
                     isLegal = false;
                 }
+                
             }
             catch
             {

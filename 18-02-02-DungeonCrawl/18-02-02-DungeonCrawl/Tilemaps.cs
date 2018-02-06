@@ -21,7 +21,33 @@ namespace _18_02_02_DungeonCrawl
                 //West Door is index [55]
                 //East Door is index [65]
                 //South Door is index [116]
-                case 0:     //corner holes and middle obstacle
+                case 0:    //empty room
+                    tilemap =   "WWWWWWWWWWW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 1:    //exit room
+                    tilemap = "WWWWWWWWWWW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEESEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 2:     //corner holes and middle obstacle
                     tilemap =   "WWWWWWWWWWW" +
                                 "WEEEEEEEEEW" +
                                 "WEPPEEEPPEW" +
@@ -34,7 +60,7 @@ namespace _18_02_02_DungeonCrawl
                                 "WEEEEEEEEEW" +
                                 "WWWWWWWWWWW";
                     break;
-                case 1:     //corners block, open layout
+                case 3:     //corners block, open layout
                     tilemap =   "WWWWWWWWWWW" +
                                 "WOOOEEEOOOW" +
                                 "WOOEEEEEOOW" +
@@ -47,7 +73,7 @@ namespace _18_02_02_DungeonCrawl
                                 "WOOOEEEOOOW" +
                                 "WWWWWWWWWWW";
                     break;
-                case 2:     //corners blocked, pit center
+                case 4:     //corners blocked, pit center
                     tilemap =   "WWWWWWWWWWW" +
                                 "WOOOEEEOOOW" +
                                 "WOOEEEEEOOW" +
@@ -60,7 +86,7 @@ namespace _18_02_02_DungeonCrawl
                                 "WOOOEEEOOOW" +
                                 "WWWWWWWWWWW";
                     break;
-                case 3:     //corners blocked, center blocked
+                case 5:     //corners blocked, center blocked
                     tilemap =   "WWWWWWWWWWW" +
                                 "WOOOEEEOOOW" +
                                 "WOOOEEEOOOW" +
@@ -73,7 +99,7 @@ namespace _18_02_02_DungeonCrawl
                                 "WOOOEEEOOOW" +
                                 "WWWWWWWWWWW";
                     break;
-                case 4:     //bunker
+                case 6:     //bunker
                     tilemap =   "WWWWWWWWWWW" +
                                 "WEEEEEEEEEW" +
                                 "WEOOOOOOOEW" +
@@ -86,7 +112,7 @@ namespace _18_02_02_DungeonCrawl
                                 "WEEEEEEEEEW" +
                                 "WWWWWWWWWWW";
                     break;
-                case 5:     //bunker with pit
+                case 7:     //bunker with pit
                     tilemap =   "WWWWWWWWWWW" +
                                 "WEEEEEEEEEW" +
                                 "WEOOOOOOOEW" +

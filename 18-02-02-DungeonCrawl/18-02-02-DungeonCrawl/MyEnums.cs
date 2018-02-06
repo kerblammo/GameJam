@@ -23,6 +23,11 @@ namespace _18_02_02_DungeonCrawl
             StairsDown = 5
         }
 
+        public enum Cardinal
+        {
+            Up, Down, Left, Right
+        }
+
         
     }
 }

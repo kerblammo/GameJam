@@ -29,6 +29,7 @@ namespace _18_02_02_DungeonCrawl
         public bool DoorWest { get; set; }
         public bool StartRoom { get; set; }
         public bool FinishRoom { get; set; }
+        public OverMap map { get; set; }
 
         //constructor
         public Room()
@@ -37,7 +38,7 @@ namespace _18_02_02_DungeonCrawl
         }
 
 
-        public Room(int x, int y)
+        public Room(int x, int y, OverMap map)
         {
 
             IsBuilt = false;
@@ -135,15 +136,20 @@ namespace _18_02_02_DungeonCrawl
             //If there is no tilemap, get one
             if (TileMap == null)
             {
-                if (!StartRoom && !FinishRoom)
+                if (StartRoom)
+                {
+                    TileMap = Tilemaps.PopulateIDs(0);
+                }
+                else if (FinishRoom)
+                {
+                    TileMap = Tilemaps.PopulateIDs(1);
+                }
+                else 
                 {
                     Random rand = new Random();
-                    TileMap = Tilemaps.PopulateIDs(rand.Next(0, 6));
+                    TileMap = Tilemaps.PopulateIDs(rand.Next(2, 8));
                 }
-                else
-                {
-                    TileMap = Tilemaps.PopulateIDs(-1);
-                }
+                
                 
             }
 
@@ -161,51 +167,59 @@ namespace _18_02_02_DungeonCrawl
                 }
 
                 //determine which tileStyle to use based on character in tilemap
-                MyEnums.TileCollisions tileStyle;
-                switch (c)
-                {
-                    case 'W':
-                        tileStyle = MyEnums.TileCollisions.Wall;
-                        break;
-                    case 'P':
-                        tileStyle = MyEnums.TileCollisions.Pit;
-                        break;
-                    case 'O':
-                        tileStyle = MyEnums.TileCollisions.Obstacle;
-                        break;
-                    case 'E':
-                    default:
+                MyEnums.TileCollisions tileStyle = MyEnums.TileCollisions.Empty;
+                
+                
+                    
+                    switch (c)
+                    {
+                        case 'W':
+                            tileStyle = MyEnums.TileCollisions.Wall;
+                            break;
+                        case 'P':
+                            tileStyle = MyEnums.TileCollisions.Pit;
+                            break;
+                        case 'O':
+                            tileStyle = MyEnums.TileCollisions.Obstacle;
+                            break;
+                       case 'S':
+                            tileStyle = MyEnums.TileCollisions.StairsDown;
+                            break;
+                        case 'E':
+                        default:
+                            tileStyle = MyEnums.TileCollisions.Empty;
+                            break;
+                    }
+                
+            //check if doors are needed
+            switch (characterCount)
+            {
+                case 5:
+                    if (DoorNorth)
+                    {
                         tileStyle = MyEnums.TileCollisions.Empty;
-                        break;
-                }
-                //check if doors are needed
-                switch (characterCount)
-                {
-                    case 5:
-                        if (DoorNorth)
-                        {
-                            tileStyle = MyEnums.TileCollisions.Empty;
-                        }
-                        break;
-                    case 55:
-                        if (DoorWest)
-                        {
-                            tileStyle = MyEnums.TileCollisions.Empty;
-                        }
-                        break;
-                    case 65:
-                        if (DoorEast)
-                        {
-                            tileStyle = MyEnums.TileCollisions.Empty;
-                        }
-                        break;
-                    case 115:
-                        if (DoorSouth)
-                        {
-                            tileStyle = MyEnums.TileCollisions.Empty;
-                        }
-                        break;
-                }
+                    }
+                    break;
+                case 55:
+                    if (DoorWest)
+                    {
+                        tileStyle = MyEnums.TileCollisions.Empty;
+                    }
+                    break;
+                case 65:
+                    if (DoorEast)
+                    {
+                        tileStyle = MyEnums.TileCollisions.Empty;
+                    }
+                    break;
+                case 115:
+                    if (DoorSouth)
+                    {
+                        tileStyle = MyEnums.TileCollisions.Empty;
+                    }
+                    break;
+            }
+                
                 //create the new tile and add it to the row
                 Tile tile = new Tile(tileStyle);
                 tile.X = tile.Width * (characterCount % 11);

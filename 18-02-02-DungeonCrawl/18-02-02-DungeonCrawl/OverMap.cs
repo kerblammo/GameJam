@@ -37,7 +37,7 @@ namespace _18_02_02_DungeonCrawl
 
             //add a new room to the list of rooms
             Rooms = new List<Room>();
-            Rooms.Add(new Room(roomX, roomY));
+            Rooms.Add(new Room(roomX, roomY, this));
 
 
             while (roomBudget >= 1)  //as long as there are rooms remaining (first room counts against budget)
@@ -57,11 +57,11 @@ namespace _18_02_02_DungeonCrawl
                         if (Rooms[i].DoorNorth
                             && Rooms[i].Y > 1)
                         {
-                            Room checkRoom = new Room(roomX, roomY - 1);
+                            Room checkRoom = new Room(roomX, roomY - 1, this);
                             int index = Rooms.FindIndex(f => f.ID == checkRoom.ID);
                             if (index < 0)
                             {
-                                Room north = new Room(roomX, roomY - 1);
+                                Room north = new Room(roomX, roomY - 1, this);
                                 north.DoorSouth = true;
                                 Rooms.Add(north);
                                 roomBudget--;
@@ -73,11 +73,11 @@ namespace _18_02_02_DungeonCrawl
                         if (Rooms[i].DoorSouth
                             && Rooms[i].Y < Height - 1)
                         {
-                            Room checkRoom = new Room(roomX, roomY + 1);
+                            Room checkRoom = new Room(roomX, roomY + 1, this);
                             int index = Rooms.FindIndex(f => f.ID == checkRoom.ID);
                             if (index < 0)
                             {
-                                Room south = new Room(roomX, roomY + 1);
+                                Room south = new Room(roomX, roomY + 1, this);
                                 south.DoorNorth = true;
                                 Rooms.Add(south);
                                 roomBudget--;
@@ -88,11 +88,11 @@ namespace _18_02_02_DungeonCrawl
                         if (Rooms[i].DoorWest
                             && Rooms[i].X > 1)
                         {
-                            Room checkRoom = new Room(roomX - 1, roomY);
+                            Room checkRoom = new Room(roomX - 1, roomY, this);
                             int index = Rooms.FindIndex(f => f.ID == checkRoom.ID);
                             if (index < 0)
                             {
-                                Room west = new Room(roomX - 1, roomY);
+                                Room west = new Room(roomX - 1, roomY, this);
                                 west.DoorEast = true;
                                 Rooms.Add(west);
                                 roomBudget--;
@@ -104,11 +104,11 @@ namespace _18_02_02_DungeonCrawl
                         if (Rooms[i].DoorEast
                             && Rooms[i].X < Width - 1)
                         {
-                            Room checkRoom = new Room(roomX + 1, roomY);
+                            Room checkRoom = new Room(roomX + 1, roomY, this);
                             int index = Rooms.FindIndex(f => f.ID == checkRoom.ID);
                             if (index < 0)
                             {
-                                Room east = new Room(roomX + 1, roomY);
+                                Room east = new Room(roomX + 1, roomY, this);
                                 east.DoorWest = true;
                                 Rooms.Add(east);
                                 roomBudget--;
@@ -137,9 +137,34 @@ namespace _18_02_02_DungeonCrawl
             Rooms[roomLast].FinishRoom = true;
             
 
-            //determine tilemaps for each room
+            
+
+            //determine tilemaps for each room, invalidate extra doors
             foreach (Room rm in Rooms)
             {
+                rm.DoorNorth = false;
+                rm.DoorSouth = false;
+                rm.DoorWest = false;
+                rm.DoorEast = false;
+                foreach (Room rmchk in Rooms)
+                {
+                    if (rmchk.X == rm.X && rmchk.Y == rm.Y - 1)
+                    {
+                        rm.DoorNorth = true;
+                    }
+                    else if (rmchk.X == rm.X && rmchk.Y == rm.Y + 1)
+                    {
+                        rm.DoorSouth = true;
+                    }
+                    else if (rmchk.X == rm.X - 1 && rmchk.Y == rm.Y)
+                    {
+                        rm.DoorWest = true;
+                    }
+                    else if (rmchk.X == rm.X + 1 && rmchk.Y == rm.Y)
+                    {
+                        rm.DoorEast = true;
+                    }
+                }
                 rm.PopulateTiles();  
             }
         
