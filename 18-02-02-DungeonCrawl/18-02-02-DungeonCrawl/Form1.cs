@@ -28,7 +28,14 @@ namespace _18_02_02_DungeonCrawl
         {
             isFormLoaded = true;
             map = new OverMap(10);
-            currentRoom = 0;
+            //determine starting room
+            foreach (Room room in map.Rooms)
+            {
+                if (room.StartRoom)
+                {
+                    currentRoom = map.Rooms.IndexOf(room);
+                }
+            }
             player.CurrentRoom = map.Rooms[currentRoom];
             paintRoom = true;
             paintPlayer = true;

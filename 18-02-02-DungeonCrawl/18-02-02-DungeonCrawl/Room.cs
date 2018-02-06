@@ -135,7 +135,16 @@ namespace _18_02_02_DungeonCrawl
             //If there is no tilemap, get one
             if (TileMap == null)
             {
-                TileMap = Tilemaps.PopulateIDs(1);
+                if (!StartRoom && !FinishRoom)
+                {
+                    Random rand = new Random();
+                    TileMap = Tilemaps.PopulateIDs(rand.Next(0, 6));
+                }
+                else
+                {
+                    TileMap = Tilemaps.PopulateIDs(-1);
+                }
+                
             }
 
             //populate each tile, according to tilemap
@@ -167,6 +176,34 @@ namespace _18_02_02_DungeonCrawl
                     case 'E':
                     default:
                         tileStyle = MyEnums.TileCollisions.Empty;
+                        break;
+                }
+                //check if doors are needed
+                switch (characterCount)
+                {
+                    case 5:
+                        if (DoorNorth)
+                        {
+                            tileStyle = MyEnums.TileCollisions.Empty;
+                        }
+                        break;
+                    case 55:
+                        if (DoorWest)
+                        {
+                            tileStyle = MyEnums.TileCollisions.Empty;
+                        }
+                        break;
+                    case 65:
+                        if (DoorEast)
+                        {
+                            tileStyle = MyEnums.TileCollisions.Empty;
+                        }
+                        break;
+                    case 115:
+                        if (DoorSouth)
+                        {
+                            tileStyle = MyEnums.TileCollisions.Empty;
+                        }
                         break;
                 }
                 //create the new tile and add it to the row

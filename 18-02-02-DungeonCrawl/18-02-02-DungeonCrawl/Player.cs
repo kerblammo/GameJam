@@ -76,12 +76,20 @@ namespace _18_02_02_DungeonCrawl
         private bool LegalMove(int x, int y, Player player)
         {
             bool isLegal = true;
-            MyEnums.TileCollisions tileToCheck = player.CurrentRoom.RowList[y / player.Sprite.Height][x / player.Sprite.Width].Type;
-            if (tileToCheck == MyEnums.TileCollisions.Obstacle
-                || tileToCheck == MyEnums.TileCollisions.Pit 
-                || tileToCheck == MyEnums.TileCollisions.Wall)
+            try
+            {
+                MyEnums.TileCollisions tileToCheck = player.CurrentRoom.RowList[y / player.Sprite.Height][x / player.Sprite.Width].Type;
+                if (tileToCheck == MyEnums.TileCollisions.Obstacle
+                    || tileToCheck == MyEnums.TileCollisions.Pit
+                    || tileToCheck == MyEnums.TileCollisions.Wall)
+                {
+                    isLegal = false;
+                }
+            }
+            catch
             {
                 isLegal = false;
+                return isLegal;
             }
             return isLegal;
         }
@@ -90,8 +98,8 @@ namespace _18_02_02_DungeonCrawl
         public Player()
         {
             Sprite = Properties.Resources.Player;
-            X = 32 * 5;
-            Y = 32 * 5;
+            X = 64 * 5;
+            Y = 64 * 5;
             Origin = new Point(X, Y);
             PaintSize = new Size(Sprite.Width, Sprite.Height);
             PaintMask = new Rectangle(Origin, PaintSize);

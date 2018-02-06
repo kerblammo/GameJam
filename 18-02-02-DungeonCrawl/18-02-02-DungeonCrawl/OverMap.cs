@@ -22,10 +22,10 @@ namespace _18_02_02_DungeonCrawl
         {
             //I was told to always leave a blank constructor
         }
-        
+
         public OverMap(int roomBudget)
         {
-            
+
 
             //define size of map
             Width = 10;
@@ -38,14 +38,14 @@ namespace _18_02_02_DungeonCrawl
             //add a new room to the list of rooms
             Rooms = new List<Room>();
             Rooms.Add(new Room(roomX, roomY));
-            
 
-           while (roomBudget >= 1)  //as long as there are rooms remaining (first room counts against budget)
+
+            while (roomBudget >= 1)  //as long as there are rooms remaining (first room counts against budget)
             {
                 bool noMoreRooms = true;
-                for (int i = Rooms.Count -1; i >= 0; i--)
+                for (int i = Rooms.Count - 1; i >= 0; i--)
                 {
-                    
+
 
                     if (!Rooms[i].IsBuilt)  //if it's not built yet
                     {
@@ -88,7 +88,7 @@ namespace _18_02_02_DungeonCrawl
                         if (Rooms[i].DoorWest
                             && Rooms[i].X > 1)
                         {
-                            Room checkRoom = new Room(roomX-1, roomY);
+                            Room checkRoom = new Room(roomX - 1, roomY);
                             int index = Rooms.FindIndex(f => f.ID == checkRoom.ID);
                             if (index < 0)
                             {
@@ -98,7 +98,7 @@ namespace _18_02_02_DungeonCrawl
                                 roomBudget--;
                                 noMoreRooms = false;
                             }
-                            
+
                         }
                         //see above. Similar code, consider refactoring if deadline permits
                         if (Rooms[i].DoorEast
@@ -114,7 +114,7 @@ namespace _18_02_02_DungeonCrawl
                                 roomBudget--;
                                 noMoreRooms = false;
                             }
-                            
+
                         }
                         //declare room to be built, decrement room budget
                         Rooms[i].IsBuilt = true;
@@ -135,6 +135,7 @@ namespace _18_02_02_DungeonCrawl
             }
             Rooms[roomFirst].StartRoom = true;
             Rooms[roomLast].FinishRoom = true;
+            
 
             //determine tilemaps for each room
             foreach (Room rm in Rooms)

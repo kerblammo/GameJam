@@ -16,6 +16,11 @@ namespace _18_02_02_DungeonCrawl
             string tilemap;
             switch (index)
             {
+                //Note on TileMaps:
+                //North Door is index [5]
+                //West Door is index [55]
+                //East Door is index [65]
+                //South Door is index [116]
                 case 0:     //corner holes and middle obstacle
                     tilemap =   "WWWWWWWWWWW" +
                                 "WEEEEEEEEEW" +
@@ -26,6 +31,71 @@ namespace _18_02_02_DungeonCrawl
                                 "WEEEEOEEEEW" +
                                 "WEPPEEEPPEW" +
                                 "WEPPEEEPPEW" +
+                                "WEEEEEEEEEW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 1:     //corners block, open layout
+                    tilemap =   "WWWWWWWWWWW" +
+                                "WOOOEEEOOOW" +
+                                "WOOEEEEEOOW" +
+                                "WOEEEEEEEOW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WOEEEEEEEOW" +
+                                "WOOEEEEEOOW" +
+                                "WOOOEEEOOOW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 2:     //corners blocked, pit center
+                    tilemap =   "WWWWWWWWWWW" +
+                                "WOOOEEEOOOW" +
+                                "WOOEEEEEOOW" +
+                                "WOEEEPEEEOW" +
+                                "WEEEPPPEEEW" +
+                                "WEEPPPPPEEW" +
+                                "WEEEPPPEEEW" +
+                                "WOEEEPEEEOW" +
+                                "WOOEEEEEOOW" +
+                                "WOOOEEEOOOW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 3:     //corners blocked, center blocked
+                    tilemap =   "WWWWWWWWWWW" +
+                                "WOOOEEEOOOW" +
+                                "WOOOEEEOOOW" +
+                                "WEEEEEEEEEW" +
+                                "WEEEOOOEEEW" +
+                                "WEEEOOOEEEW" +
+                                "WEEEOOOEEEW" +
+                                "WEEEEEEEEEW" +
+                                "WOOOEEEOOOW" +
+                                "WOOOEEEOOOW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 4:     //bunker
+                    tilemap =   "WWWWWWWWWWW" +
+                                "WEEEEEEEEEW" +
+                                "WEOOOOOOOEW" +
+                                "WEOEEEEEOEW" +
+                                "WEOEEEEEOEW" +
+                                "WEEEEEEEEEW" +
+                                "WEOEEEEEOEW" +
+                                "WEOEEEEEOEW" +
+                                "WEOOOOOOOEW" +
+                                "WEEEEEEEEEW" +
+                                "WWWWWWWWWWW";
+                    break;
+                case 5:     //bunker with pit
+                    tilemap =   "WWWWWWWWWWW" +
+                                "WEEEEEEEEEW" +
+                                "WEOOOOOOOEW" +
+                                "WEOEEEEEOEW" +
+                                "WEOEPPPEOEW" +
+                                "WEEEPPPEEEW" +
+                                "WEOEPPPEOEW" +
+                                "WEOEEEEEOEW" +
+                                "WEOOOOOOOEW" +
                                 "WEEEEEEEEEW" +
                                 "WWWWWWWWWWW";
                     break;
