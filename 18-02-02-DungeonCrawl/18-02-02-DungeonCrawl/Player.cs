@@ -17,10 +17,13 @@ namespace _18_02_02_DungeonCrawl
         public Point Origin { get; set; }
         public Rectangle PaintMask { get; set; }
         public Rectangle PaintMaskOld { get; set; }
+        public Rectangle PaintMaskKill { get; set; }
         public Size PaintSize { get; set; }
         public Room CurrentRoom { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public bool KillMonster { get; set; }
+        public int Health { get; set; }
         
         //methods
         //move methods move the player, and update its paintmask
@@ -78,19 +81,39 @@ namespace _18_02_02_DungeonCrawl
             bool isLegal = true;
             try
             {
+
                 MyEnums.TileCollisions tileToCheck = player.CurrentRoom.RowList[y / player.Sprite.Height][x / player.Sprite.Width].Type;
                 if (tileToCheck == MyEnums.TileCollisions.Obstacle
                     || tileToCheck == MyEnums.TileCollisions.Pit
                     || tileToCheck == MyEnums.TileCollisions.Wall)
                 {
                     isLegal = false;
+                    return isLegal;
                 }
-                
             }
             catch
             {
                 isLegal = false;
                 return isLegal;
+            }
+            //check if monster exists, and if it does, remove it
+            int monsterIndex = 0;
+            bool removeMonster = false;
+            foreach (Monster monster in CurrentRoom.Monsters)
+            {
+                if (monster.X == x && monster.Y == y)
+                {
+                    isLegal = false;
+                    removeMonster = true;
+                    PaintMaskKill = monster.PaintMask;
+                    KillMonster = true;
+                    break;
+                }
+                monsterIndex++;
+            }
+            if (removeMonster)
+            {
+                CurrentRoom.Monsters.RemoveAt(monsterIndex);
             }
             return isLegal;
         }
@@ -98,9 +121,10 @@ namespace _18_02_02_DungeonCrawl
         //Constructor
         public Player()
         {
+            Health = 3;
             Sprite = Properties.Resources.Player;
-            X = 64 * 5;
-            Y = 64 * 5;
+            X = Sprite.Width * 5;
+            Y = Sprite.Height * 5;
             Origin = new Point(X, Y);
             PaintSize = new Size(Sprite.Width, Sprite.Height);
             PaintMask = new Rectangle(Origin, PaintSize);

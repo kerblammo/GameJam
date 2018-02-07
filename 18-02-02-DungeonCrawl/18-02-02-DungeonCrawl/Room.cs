@@ -30,6 +30,9 @@ namespace _18_02_02_DungeonCrawl
         public bool StartRoom { get; set; }
         public bool FinishRoom { get; set; }
         public OverMap map { get; set; }
+        public bool RoomCleared { get; set; }
+        public List<Monster> Monsters { get; set; }
+        public Player MainPlayer { get; set; }
 
         //constructor
         public Room()
@@ -40,7 +43,9 @@ namespace _18_02_02_DungeonCrawl
 
         public Room(int x, int y, OverMap map)
         {
-
+            MainPlayer = map.MainPlayer;
+            RoomCleared = false;
+            Monsters = new List<Monster>();
             IsBuilt = false;
             Height = 11;
             Width = 11;
@@ -133,6 +138,7 @@ namespace _18_02_02_DungeonCrawl
 
         public void PopulateTiles()
         {
+            Random rand = new Random();
             //If there is no tilemap, get one
             if (TileMap == null)
             {
@@ -146,7 +152,7 @@ namespace _18_02_02_DungeonCrawl
                 }
                 else 
                 {
-                    Random rand = new Random();
+                    
                     TileMap = Tilemaps.PopulateIDs(rand.Next(2, 8));
                 }
                 
@@ -225,6 +231,17 @@ namespace _18_02_02_DungeonCrawl
                 tile.X = tile.Width * (characterCount % 11);
                 tile.Y = tile.Height * (characterCount / 11);
                 tile.Origin = new Point(tile.X, tile.Y);
+                if (tile.Type == MyEnums.TileCollisions.Empty && !FinishRoom && !StartRoom
+                    && tile.X > 0 && tile.X < 640 && tile.Y > 0 && tile.Y < 640)
+                {
+                    
+                    int roll = rand.Next(1, 11);
+                    if (roll == 1)
+                    {
+                        Monster monster = new Monster(tile.X, tile.Y, this, MainPlayer);
+                        Monsters.Add(monster);
+                    }
+                }
                 row.Add(tile);
                 characterCount++;
                 

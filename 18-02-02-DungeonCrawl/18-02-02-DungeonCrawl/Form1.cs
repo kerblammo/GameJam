@@ -22,13 +22,15 @@ namespace _18_02_02_DungeonCrawl
         bool repaintRoom = false;
         bool paintPlayer = false;
         int currentRoom;
-        OverMap map = new OverMap();
         Player player = new Player();
+        OverMap map = new OverMap();
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             isFormLoaded = true;
-            map = new OverMap(5);
+            map = new OverMap(5, player);
             //determine starting room
             foreach (Room room in map.Rooms)
             {
@@ -70,6 +72,7 @@ namespace _18_02_02_DungeonCrawl
                         foreach(Tile tile in row)
                         {
                             e.Graphics.DrawImage(tile.Sprite, tile.Origin);
+                            
                         }
                     }
 
@@ -77,6 +80,10 @@ namespace _18_02_02_DungeonCrawl
                 if (paintPlayer)    //it is now time to paint the player
                 {
                     e.Graphics.DrawImage(player.Sprite, player.Origin);
+                }
+                foreach (Monster monster in map.Rooms[currentRoom].Monsters)
+                {
+                    e.Graphics.DrawImage(monster.Sprite, monster.Origin);
                 }
 
             }
@@ -138,10 +145,36 @@ namespace _18_02_02_DungeonCrawl
 
 
                 }
+                else //check if monsters must move
+                {
+                    
+                    foreach (Monster monster in map.Rooms[currentRoom].Monsters)
+                    {
+                        
+                        Invalidate(monster.PaintMask);
+                        if (monster.X == player.X && monster.Y == player.Y)
+                        {
+
+                        }
+                        monster.DetermineDirection();
+                        Invalidate(monster.PaintMask);
+                        if (player.Health <= 0)
+                        {
+                            MessageBox.Show("You have run out of hitpoints and died!", "You Dead");
+                            player.Health = 100;
+                            break;
+                        }
+                    }
+                }
 
                 
                 Invalidate(player.PaintMaskOld);
                 Invalidate(player.PaintMask);
+                if (player.KillMonster)
+                {
+                    Invalidate(player.PaintMaskKill);
+                    player.KillMonster = false;
+                }
                 
                 
             }

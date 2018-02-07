@@ -53,6 +53,8 @@ namespace _18_02_02_DungeonCrawl
             }
             Width = Sprite.Width;
             Height = Sprite.Height;
+
+            
         }
     }
 }

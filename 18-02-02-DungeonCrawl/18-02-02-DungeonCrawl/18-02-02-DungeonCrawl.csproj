@@ -52,6 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Monster.cs" />
     <Compile Include="MyEnums.cs" />
     <Compile Include="OverMap.cs" />
     <Compile Include="Player.cs" />
@@ -115,6 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Improved Assets\TileStairDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Monster.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

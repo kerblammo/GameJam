@@ -16,6 +16,7 @@ namespace _18_02_02_DungeonCrawl
         public int Width { get; set; }
         public int Height { get; set; }
         public List<Room> Rooms { get; set; }
+        public Player MainPlayer { get; set; }
 
         //constructor
         public OverMap()
@@ -23,14 +24,14 @@ namespace _18_02_02_DungeonCrawl
             //I was told to always leave a blank constructor
         }
 
-        public OverMap(int roomBudget)
+        public OverMap(int roomBudget, Player player)
         {
 
 
             //define size of map
             Width = 10;
             Height = 10;
-
+            MainPlayer = player;
             Random rand = new Random();
             int roomX = rand.Next(2, Width - 1);
             int roomY = rand.Next(2, Height - 1);
