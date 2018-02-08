@@ -17,6 +17,7 @@ namespace _18_02_02_DungeonCrawl
             InitializeComponent();
         }
 
+        bool displayFloor = false;
         bool isFormLoaded = false;
         bool paintRoom = false;
         bool repaintRoom = false;
@@ -24,24 +25,13 @@ namespace _18_02_02_DungeonCrawl
         int currentRoom;
         Player player = new Player();
         OverMap map = new OverMap();
+        int floor = 0;
         
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            isFormLoaded = true;
-            map = new OverMap(5, player);
-            //determine starting room
-            foreach (Room room in map.Rooms)
-            {
-                if (room.StartRoom)
-                {
-                    currentRoom = map.Rooms.IndexOf(room);
-                }
-            }
-            player.CurrentRoom = map.Rooms[currentRoom];
-            paintRoom = true;
-            paintPlayer = true;
+
+            ChangeFloor();
             
         }
 
@@ -67,6 +57,7 @@ namespace _18_02_02_DungeonCrawl
                 if (repaintRoom)
                 {
                     repaintRoom = false; //happens only once
+                    
                     foreach(List<Tile> row in map.Rooms[currentRoom].RowList)
                     {
                         foreach(Tile tile in row)
@@ -74,6 +65,11 @@ namespace _18_02_02_DungeonCrawl
                             e.Graphics.DrawImage(tile.Sprite, tile.Origin);
                             
                         }
+                    }
+                    if (displayFloor && map.Rooms[currentRoom].StartRoom)
+                    {
+                        displayFloor = false;
+                        MessageBox.Show("Floor: " + floor);
                     }
 
                 }
@@ -145,6 +141,13 @@ namespace _18_02_02_DungeonCrawl
 
 
                 }
+                else if (map.Rooms[currentRoom].FinishRoom
+                        && player.X == 320 && player.Y == 320)
+                {
+                    ChangeFloor();
+                }
+
+                
                 else //check if monsters must move
                 {
                     
@@ -160,8 +163,6 @@ namespace _18_02_02_DungeonCrawl
                         Invalidate(monster.PaintMask);
                         if (player.Health <= 0)
                         {
-                            MessageBox.Show("You have run out of hitpoints and died!", "You Dead");
-                            player.Health = 100;
                             break;
                         }
                     }
@@ -175,6 +176,15 @@ namespace _18_02_02_DungeonCrawl
                     Invalidate(player.PaintMaskKill);
                     player.KillMonster = false;
                 }
+                if (player.Health <= 0)
+                {
+                    lblHealth.Text = "x " + player.Health;
+                    MessageBox.Show("You have run out of hitpoints and died! \nYou have reached floor " + floor + "\nYou will now be returned to a new dungeon", "GAME OVER");
+                    player = new Player();
+                    floor = 0;
+                    ChangeFloor();
+                }
+                lblHealth.Text = "x " + player.Health;
                 
                 
             }
@@ -217,6 +227,31 @@ namespace _18_02_02_DungeonCrawl
                 }
             }
             player.CurrentRoom = map.Rooms[currentRoom];
+        }
+
+        public void ChangeFloor()
+        {
+            floor++;
+            if (floor > 1)
+            {
+                displayFloor = true;
+            }
+            isFormLoaded = true;
+            map = new OverMap(5, player);
+            //determine starting room
+            foreach (Room room in map.Rooms)
+            {
+                if (room.StartRoom)
+                {
+                    currentRoom = map.Rooms.IndexOf(room);
+                    Invalidate();
+                    break;
+                }
+            }
+            player.CurrentRoom = map.Rooms[currentRoom];
+            paintRoom = true;
+            repaintRoom = true;
+            paintPlayer = true;
         }
     }
 }
