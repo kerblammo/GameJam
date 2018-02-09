@@ -32,6 +32,7 @@ namespace _18_02_02_DungeonCrawl
         {
 
             ChangeFloor();
+            MessageBox.Show("Use WASD to move. Move into an enemy to destroy them\nWatch out, they can do the same to you!\n\nHow deep can you go?", "Instructions");
             
         }
 
@@ -237,7 +238,7 @@ namespace _18_02_02_DungeonCrawl
                 displayFloor = true;
             }
             isFormLoaded = true;
-            map = new OverMap(5, player);
+            map = new OverMap(20, player);
             //determine starting room
             foreach (Room room in map.Rooms)
             {
