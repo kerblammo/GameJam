@@ -24,6 +24,11 @@ namespace CookThulhu
             InitializeComponent();
         }
 
+        Player player = new Player();
+        List<Oven> ovens = new List<Oven>();
+        List<Mixer> mixers = new List<Mixer>();
+
+
         /// <summary>
         /// When the player clicks on a patron, the player moves to the nearest location to it
         /// If the player is carrying an order, they will deliver it to the customer to be evaluated
@@ -266,6 +271,36 @@ namespace CookThulhu
             picPlayer.Image = Properties.Resources.PlayerRight;
 
             //TODO: if player is holding an item, discard it
+        }
+        /// <summary>
+        /// Events to perform when the form loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmStage_Load(object sender, EventArgs e)
+        {
+            ResetStage();
+        }
+
+        /// <summary>
+        /// Resets stage to initial settings
+        /// </summary>
+        private void ResetStage()
+        {
+            //Create new player
+            player = new Player();
+
+            //Create mixers
+            for (int i = 0; i < 2; i++)
+            {
+                mixers.Add(new Mixer());
+            }
+
+            //Create ovens
+            for (int i = 0; i < 4; i++)
+            {
+                ovens.Add(new Oven());
+            }
         }
     }
 }

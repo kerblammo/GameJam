@@ -52,7 +52,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Meal.cs" />
+    <Compile Include="Mixer.cs" />
     <Compile Include="MyEnums.cs" />
+    <Compile Include="Oven.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

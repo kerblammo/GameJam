@@ -11,6 +11,31 @@ namespace CookThulhu
     class MyEnums
     {
         /// <summary>
+        /// CookerState is a collection of states that a cooker object may be in
+        /// </summary>
+        public enum CookerState
+        {
+            Empty,
+            Working,
+            Done
+        }
+
+        /// <summary>
+        /// ItemIDs is a collection of items that the player may interact with
+        /// </summary>
+        public enum ItemIDs
+        {
+            Empty,
+            RawCake,
+            CookedCake,
+            Cake,
+            RawFingers,
+            Fingers,
+            IceCream
+
+        }
+
+        /// <summary>
         /// PlayerXPos is a collection of possible positions a player can move to
         /// Each entry corresponds to the X value of a player's potential location
         /// </summary>
