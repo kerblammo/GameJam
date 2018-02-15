@@ -112,7 +112,9 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerLeft;
 
-            //TODO: check if mixer is full, or if it needs to be started
+            //check state of mixer and act appropriately
+            int iMixer = 0;
+            UseMixer(iMixer);
         }
 
         /// <summary>
@@ -130,7 +132,25 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerLeft;
 
-            //TODO: check if mixer is full, or if it needs to be started
+            //check state of mixer and act appropriately
+            int iMixer = 1;
+            UseMixer(iMixer);
+            
+        }
+
+        /// <summary>
+        /// Use Mixer receives the index of the mixer to interact with.
+        /// It checks the state of the mixer and determines if a player should receive an item
+        /// </summary>
+        /// <param name="iMixer"></param>
+        public void UseMixer(int iMixer)
+        {
+            if (mixers[iMixer].Interact(player.HeldItem))
+            {
+                player.HeldItem = (int)MyEnums.ItemIDs.RawCake;
+                //TODO: Display held item via picture box
+                MessageBox.Show("Holding batter");
+            }
         }
 
         /// <summary>
@@ -166,6 +186,9 @@ namespace CookThulhu
             picPlayer.Image = Properties.Resources.PlayerDown;
 
             //TODO: check state of oven and decide what to do from there
+            //check state of oven and act appropriately
+            int iOven = 0;
+            UseOven(iOven);
         }
 
         /// <summary>
@@ -184,6 +207,9 @@ namespace CookThulhu
             picPlayer.Image = Properties.Resources.PlayerDown;
 
             //TODO: check state of oven and decide what to do from there
+            //check state of oven and act appropriately
+            int iOven = 1;
+            UseOven(iOven);
         }
 
         /// <summary>
@@ -202,6 +228,10 @@ namespace CookThulhu
             picPlayer.Image = Properties.Resources.PlayerDown;
 
             //TODO: check state of oven and decide what to do from there
+            //check state of oven and act appropriately
+            int iOven = 2;
+            UseOven(iOven);
+            
         }
 
         /// <summary>
@@ -220,6 +250,46 @@ namespace CookThulhu
             picPlayer.Image = Properties.Resources.PlayerDown;
 
             //TODO: check state of oven and decide what to do from there
+            //check state of oven and act appropriately
+            int iOven = 3;
+            UseOven(iOven);
+            
+        }
+
+        /// <summary>
+        /// Use Oven receives the index of the oven to perform operation on.
+        /// It checks the state of the oven, and determines if a player may take or insert an item into it
+        /// </summary>
+        /// <param name="iOven"></param>
+        public void UseOven(int iOven)
+        {
+            //check if player must empty hands
+            bool dropItem = false;
+            if ((player.HeldItem == (int)MyEnums.ItemIDs.RawFingers || player.HeldItem == (int)MyEnums.ItemIDs.RawCake)
+                && ovens[iOven].State == (int)MyEnums.CookerState.Empty)
+            {
+                dropItem = true;
+            }
+            if (ovens[iOven].Interact(player.HeldItem))
+            {
+                if (ovens[iOven].CurrentItem == (int)MyEnums.ItemIDs.RawCake)
+                {
+                    player.HeldItem = (int)MyEnums.ItemIDs.CookedCake;
+                    MessageBox.Show("Holding cake");
+                }
+                else if (ovens[iOven].CurrentItem == (int)MyEnums.ItemIDs.RawFingers)
+                {
+                    player.HeldItem = (int)MyEnums.ItemIDs.Fingers;
+                    MessageBox.Show("Holding fingers");
+                }
+
+                //TODO: Display held item via picture box
+
+            }
+            if (dropItem)
+            {
+                player.HeldItem = (int)MyEnums.ItemIDs.Empty;
+            }
         }
 
         /// <summary>
@@ -270,7 +340,8 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerRight;
 
-            //TODO: if player is holding an item, discard it
+            //discard held item
+            player.HeldItem = (int)MyEnums.ItemIDs.Empty;
         }
         /// <summary>
         /// Events to perform when the form loads
@@ -289,17 +360,158 @@ namespace CookThulhu
         {
             //Create new player
             player = new Player();
+            player.HeldItem = (int)MyEnums.ItemIDs.RawFingers;
 
             //Create mixers
             for (int i = 0; i < 2; i++)
             {
-                mixers.Add(new Mixer());
+                Mixer mixer = new Mixer();
+                PictureBox pic;
+                switch (i)
+                {
+                    case 0:
+                        pic = picProgressMixer1;
+                        break;
+                    case 1:
+                    default:
+                        pic = picProgressMixer2;
+                        break;
+                }
+                mixer.ProgressBar = pic;
+                mixers.Add(mixer);
             }
 
             //Create ovens
             for (int i = 0; i < 4; i++)
             {
-                ovens.Add(new Oven());
+                Oven oven = new Oven();
+                PictureBox pic;
+                switch (i)
+                {
+                    case 0:
+                        pic = picProgressOven1;
+                        break;
+                    case 1:
+                        pic = picProgressOven2;
+                        break;
+                    case 2:
+                        pic = picProgressOven3;
+                        break;
+                    case 3:
+                    default:
+                        pic = picProgressOven4;
+                        break;
+                }
+                oven.ProgressBar = pic;
+                ovens.Add(oven);
+            }
+        }
+
+        private void tmrStep_Tick(object sender, EventArgs e)
+        {
+            foreach (Mixer mixer in mixers)
+            {
+                //call step event
+                mixer.Step();
+                //check mixer state and update progress bar 
+                switch (mixer.State)
+                {
+                    case (int)MyEnums.CookerState.Empty:    //ensure progress bar is empty
+                        if (mixer.ProgressBar.Image != Properties.Resources.ProgressBar0)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar0;
+                        }
+                        break;
+                    case (int)MyEnums.CookerState.Working:  //display current progress
+                        double progress = Convert.ToDouble(mixer.Progress);
+                        double threshold = Convert.ToDouble(mixer.ProgressThreshold);
+                        progress /= threshold;
+                        //update progress bar
+                        if (progress < 0.2)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar0;
+                        }
+                        else if (progress < 0.4)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar20;
+                        }
+                        else if (progress < 0.6)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar40;
+                        }
+                        else if (progress < 0.8)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar60;
+                        }
+                        else if (progress < 1)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar80;
+                        }
+                        else
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar100;
+                        }
+                        break;
+                    case (int)MyEnums.CookerState.Done: //ensure progress bar is now full
+                        if (mixer.ProgressBar.Image != Properties.Resources.ProgressBar100)
+                        {
+                            mixer.ProgressBar.Image = Properties.Resources.ProgressBar100;
+                        }
+                        break;
+                }
+            }
+
+            //check oven state and update progress bar
+            foreach (Oven oven in ovens)
+            {
+                //call step event
+                oven.Step();
+                //check mixer state and update progress bar 
+                switch (oven.State)
+                {
+                    case (int)MyEnums.CookerState.Empty:    //ensure progress bar is empty
+                        if (oven.ProgressBar.Image != Properties.Resources.ProgressBar0)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar0;
+                        }
+                        break;
+                    case (int)MyEnums.CookerState.Working:  //display current progress
+                        double progress = Convert.ToDouble(oven.Progress);
+                        double threshold = Convert.ToDouble(oven.ProgressThreshold);
+                        progress /= threshold;
+                        //update progress bar
+                        if (progress < 0.2)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar0;
+                        }
+                        else if (progress < 0.4)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar20;
+                        }
+                        else if (progress < 0.6)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar40;
+                        }
+                        else if (progress < 0.8)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar60;
+                        }
+                        else if (progress < 1)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar80;
+                        }
+                        else
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar100;
+                        }
+                        break;
+                    case (int)MyEnums.CookerState.Done: //ensure progress bar is now full
+                        if (oven.ProgressBar.Image != Properties.Resources.ProgressBar100)
+                        {
+                            oven.ProgressBar.Image = Properties.Resources.ProgressBar100;
+                        }
+                        break;
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CookThulhu
 {
@@ -18,6 +19,7 @@ namespace CookThulhu
         public List<int> ProducedItems { get; set; }    //list of items that may be produced
         public List<int> AcceptedItems { get; set; }    //list of items that can be cooked
         public int CurrentItem { get; set; }    //item currently inside oven
+        public PictureBox ProgressBar { get; set; } //the progress bar that corresponds to this oven
 
         /// <summary>
         /// Create an instance of Oven with default initial values
@@ -44,6 +46,59 @@ namespace CookThulhu
             ProducedItems.Add((int)MyEnums.ItemIDs.Fingers);
             
             
+        }
+
+        /// <summary>
+        /// Called when user clicks on an oven. Checks what state the oven is in, and determines what to do from there
+        /// </summary>
+        public bool Interact(int playerItem)
+        {
+            //determines if player will receive an item
+            bool receiveItem = false;
+            switch (State)
+            {
+                case (int)MyEnums.CookerState.Empty:
+                    //Start cooking
+                    if (playerItem == (int)MyEnums.ItemIDs.RawCake || playerItem == (int)MyEnums.ItemIDs.RawFingers)
+                    {
+                        State = (int)MyEnums.CookerState.Working;
+                        CurrentItem = playerItem;
+                    }
+                    
+                    break;
+                case (int)MyEnums.CookerState.Working:
+                    //Nothing happens
+                    break;
+                case (int)MyEnums.CookerState.Done:
+                    //Remove cooked item
+                    if (playerItem == (int)MyEnums.ItemIDs.Empty)
+                    {
+                        receiveItem = true;
+                        State = (int)MyEnums.CookerState.Empty;
+                        Progress = 0;
+                    }
+                    break;
+            }
+            return receiveItem;
+        }
+
+        /// <summary>
+        /// Called at each game step. If the oven is currently working, progress is made on it
+        /// </summary>
+        public void Step()
+        {
+            //only perform action if mixer is working
+            if (State == (int)MyEnums.CookerState.Working)
+            {
+                if (this.Progress < ProgressThreshold)  //if not at max, make progress
+                {
+                    Progress += ProgressStep;
+                }
+                if (Progress >= ProgressThreshold)  //if after we make progress, we're at max
+                {
+                    State = (int)MyEnums.CookerState.Done;
+                }
+            }
         }
 
 

@@ -142,6 +142,24 @@
   <ItemGroup>
     <None Include="Resources\Trash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar100.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
