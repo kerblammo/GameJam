@@ -10,9 +10,11 @@ namespace CookThulhu
 {
     class Player
     {
-        public Meal HeldMeal { get; set; }
+        public IceCream HeldIceCream { get; set; }
+        public Cake HeldCake { get; set; }
         public int HeldItem { get; set; }
         public int Score { get; set; }
+        public int OpenStation { get; set; }
 
         /// <summary>
         /// Create an instance of Player with initial values
@@ -20,6 +22,7 @@ namespace CookThulhu
         public Player()
         {
             HeldItem = (int)MyEnums.ItemIDs.Empty;
+            OpenStation = (int)MyEnums.Station.None;
             Score = 0;
         }
     }

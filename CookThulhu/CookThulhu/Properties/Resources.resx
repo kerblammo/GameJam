@@ -118,6 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CustomizationMenuBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CustomizationMenuBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IceCreamCone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IceCreamCone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IceCreamScoopChocolate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IceCreamScoopChocolate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IceCreamScoopHazel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IceCreamScoopHazel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IceCreamScoopMint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IceCreamScoopMint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Mixer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mixer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

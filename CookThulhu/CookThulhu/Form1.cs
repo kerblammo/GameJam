@@ -185,7 +185,7 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerDown;
 
-            //TODO: check state of oven and decide what to do from there
+            
             //check state of oven and act appropriately
             int iOven = 0;
             UseOven(iOven);
@@ -206,7 +206,7 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerDown;
 
-            //TODO: check state of oven and decide what to do from there
+            
             //check state of oven and act appropriately
             int iOven = 1;
             UseOven(iOven);
@@ -227,7 +227,7 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerDown;
 
-            //TODO: check state of oven and decide what to do from there
+            
             //check state of oven and act appropriately
             int iOven = 2;
             UseOven(iOven);
@@ -249,7 +249,7 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerDown;
 
-            //TODO: check state of oven and decide what to do from there
+            
             //check state of oven and act appropriately
             int iOven = 3;
             UseOven(iOven);
@@ -324,6 +324,24 @@ namespace CookThulhu
             picPlayer.Image = Properties.Resources.PlayerRight;
 
             //TODO: if player's hands are empty, open icecream menu
+            if (player.HeldItem == (int)MyEnums.ItemIDs.Empty)
+            {
+                //Show customization menu
+                pnlCustomMenu.Show();
+                player.OpenStation = (int)MyEnums.Station.IceCream;
+                lblCustomizationRecipe.Text = "Eye Scream";
+                lblCustomizationCommand1.Text = "Q: Chocolate";
+                lblCustomizationCommand2.Text = "W: Mint";
+                lblCustomizationCommand3.Text = "E: Hazel";
+                lblCustomizationCommand4.Text = "R: Return";
+                
+
+                //create ice cream for player
+                player.HeldIceCream = new IceCream();
+                picIceCreamCone.Visible = true;
+
+
+            }
         }
 
         /// <summary>
@@ -360,7 +378,7 @@ namespace CookThulhu
         {
             //Create new player
             player = new Player();
-            player.HeldItem = (int)MyEnums.ItemIDs.RawFingers;
+            player.HeldItem = (int)MyEnums.ItemIDs.Empty;
 
             //Create mixers
             for (int i = 0; i < 2; i++)
@@ -512,6 +530,84 @@ namespace CookThulhu
                         }
                         break;
                 }
+            }
+        }
+
+        private void frmStage_KeyDown(object sender, KeyEventArgs e)
+        {
+            //determine which control scheme to use based on which station is open
+            switch (player.OpenStation)
+            {
+                case ((int)MyEnums.Station.IceCream):   //ice cream station
+                    //see if more scoops are valid
+                    int totalScoops = player.HeldIceCream.ScoopsHazel + player.HeldIceCream.ScoopsMint
+                        + player.HeldIceCream.ScoopsChocolate;
+                    int maxScoops = 3;
+                    PictureBox currentScoop;
+
+                    //determine which scoop to show
+                    switch (totalScoops)
+                    {
+                        case 0:
+                            currentScoop = picIceCreamScoop1;
+                            break;
+                        case 1:
+                            currentScoop = picIceCreamScoop2;
+                            break;
+                        case 2:
+                            currentScoop = picIceCreamScoop3;
+                            break;
+                        default:
+                            currentScoop = picIceCreamScoop1;
+                            break;
+                    }
+
+                    //keybindings
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Q:    //Chocolate
+                            if (totalScoops < maxScoops)
+                            {
+                                player.HeldIceCream.ScoopsChocolate++;
+                                currentScoop.Image = Properties.Resources.IceCreamScoopChocolate;
+                                currentScoop.Visible = true;
+                            }
+                            break;
+                        case Keys.W:    //Mint
+                            if (totalScoops < maxScoops)
+                            {
+                                player.HeldIceCream.ScoopsMint++;
+                                currentScoop.Image = Properties.Resources.IceCreamScoopMint;
+                                currentScoop.Visible = true;
+                            }
+                            break;
+                        case Keys.E:    //Hazel
+                            if (totalScoops < maxScoops)
+                            {
+                                player.HeldIceCream.ScoopsHazel++;
+                                currentScoop.Image = Properties.Resources.IceCreamScoopHazel;
+                                currentScoop.Visible = true;
+                            }
+                            break;
+                        case Keys.R:    //Close Menu
+                            //hide images
+                            picIceCreamScoop1.Visible = false;
+                            picIceCreamScoop2.Visible = false;
+                            picIceCreamScoop3.Visible = false;
+                            picIceCreamCone.Visible = false;
+                            pnlCustomMenu.Visible = false;
+
+                            //give ice cream to player
+                            player.HeldItem = (int)MyEnums.ItemIDs.IceCream;
+                            break;
+                    }
+                    break;
+                case ((int)MyEnums.Station.Fingers):    //fingers station
+                    break;
+                case ((int)MyEnums.Station.Cake):       //cake station
+                    break;
+                default:
+                    break;
             }
         }
     }

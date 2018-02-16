@@ -63,6 +63,56 @@ namespace CookThulhu.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CustomizationMenuBackground {
+            get {
+                object obj = ResourceManager.GetObject("CustomizationMenuBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IceCreamCone {
+            get {
+                object obj = ResourceManager.GetObject("IceCreamCone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IceCreamScoopChocolate {
+            get {
+                object obj = ResourceManager.GetObject("IceCreamScoopChocolate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IceCreamScoopHazel {
+            get {
+                object obj = ResourceManager.GetObject("IceCreamScoopHazel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IceCreamScoopMint {
+            get {
+                object obj = ResourceManager.GetObject("IceCreamScoopMint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Mixer {
             get {
                 object obj = ResourceManager.GetObject("Mixer", resourceCulture);

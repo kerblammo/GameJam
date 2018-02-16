@@ -80,5 +80,17 @@ namespace CookThulhu
             Trash = 381
         }
 
+        /// <summary>
+        /// Station is a collection of stations that the player may have open
+        /// </summary>
+        public enum Station
+        {
+            None, 
+            Cake,
+            IceCream,
+            Fingers
+            
+        }
+
     }
 }

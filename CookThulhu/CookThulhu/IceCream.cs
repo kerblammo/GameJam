@@ -13,7 +13,7 @@ namespace CookThulhu
         public int ItemID { get; set; }
         public int ScoopsHazel { get; set; }
         public int ScoopsMint { get; set; }
-        public int ScoopsStrawberry { get; set; }
+        public int ScoopsChocolate { get; set; }
 
         /// <summary>
         /// Construct an empty ice cream cone
@@ -23,7 +23,7 @@ namespace CookThulhu
             ItemID = (int)MyEnums.ItemIDs.IceCream;
             ScoopsHazel = 0;
             ScoopsMint = 0;
-            ScoopsStrawberry = 0;
+            ScoopsChocolate = 0;
         }
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace CookThulhu
         /// </summary>
         /// <param name="hazel">Number of hazel scoops</param>
         /// <param name="mint">Number of mint scoops</param>
-        /// <param name="strawberry">Number of strawberry scoops</param>
-        public IceCream(int hazel, int mint, int strawberry)
+        /// <param name="strawberry">Number of chocolate scoops</param>
+        public IceCream(int hazel, int mint, int chocolate)
         {
             ItemID = (int)MyEnums.ItemIDs.IceCream;
             ScoopsHazel = hazel;
             ScoopsMint = mint;
-            ScoopsStrawberry = strawberry;
+            ScoopsChocolate = chocolate;
         }
     }
 }
