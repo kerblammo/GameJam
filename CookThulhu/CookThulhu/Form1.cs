@@ -167,7 +167,23 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerLeft;
 
-            //TODO: if player is holding a cooked cake, open the cake menu
+            //if player is holding a cooked cake, open the cake menu
+            if (player.HeldItem == (int)MyEnums.ItemIDs.CookedCake)
+            {
+                //Show customization menu
+                player.OpenStation = (int)MyEnums.Station.Cake;
+                pnlCustomMenu.Show();
+                lblCustomizationRecipe.Text = "Devils' Food Cake";
+                lblCustomizationCommand1.Text = "Q: Sugar Skulls";
+                lblCustomizationCommand2.Text = "W: Pentagram";
+                lblCustomizationCommand3.Text = "E: Cherry Giblets";
+                lblCustomizationCommand4.Text = "R: Return";
+
+                //Make cake for player to hold
+                player.HeldCake = new Cake();
+                picCakeBase.Visible = true;
+
+            }
         }
 
         /// <summary>
@@ -306,7 +322,24 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerDown;
 
-            //TODO: if players hands are empty, open chopping menu
+            // if players hands are empty, open chopping menu
+            if (player.HeldItem == (int)MyEnums.ItemIDs.Empty)
+            {
+                //show customization menu
+                pnlCustomMenu.Show();
+                player.OpenStation = (int)MyEnums.Station.Fingers;
+                lblCustomizationRecipe.Text = "Lady Fingers";
+                lblCustomizationCommand1.Text = "Q: Take Knife";
+                lblCustomizationCommand2.Text = "W: Chop";
+                lblCustomizationCommand3.Text = "E: Drop Knife";
+                lblCustomizationCommand4.Text = "R: Return";
+
+                //create fingers for player
+                player.HeldFingers = new Fingers();
+                picFingersHand.Image = Properties.Resources.FingersWhole;
+                picFingersHand.Visible = true;
+                picKnifeRest.Visible = true;
+            }
         }
 
         /// <summary>
@@ -323,7 +356,7 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerRight;
 
-            //TODO: if player's hands are empty, open icecream menu
+            //if player's hands are empty, open icecream menu
             if (player.HeldItem == (int)MyEnums.ItemIDs.Empty)
             {
                 //Show customization menu
@@ -603,8 +636,80 @@ namespace CookThulhu
                     }
                     break;
                 case ((int)MyEnums.Station.Fingers):    //fingers station
+
+                    //keybinds
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Q:    //grab knife
+                            if (!player.HeldFingers.HeldKnife)  //take the knife, if not holding it
+                            {
+                                player.HeldFingers.HeldKnife = true;
+                                picKnifeRest.Visible = false;
+                            }
+                            break;
+                        case Keys.W:    //chop
+                            if (!player.HeldFingers.ChoppedKnife    //if player hasn't chopped
+                                && player.HeldFingers.HeldKnife)    //and player is holding knife
+                            {
+                                player.HeldFingers.ChoppedKnife = true;
+                                picKnifeChopping.Visible = true;
+                                picFingersHand.Image = Properties.Resources.FingersChopped;
+                            }
+                            break;
+                        case Keys.E:    //drop knife
+                            if (player.HeldFingers.ChoppedKnife    //if player has chopped
+                                && !player.HeldFingers.DroppedKnife)    //and player hasn't dropped knife
+                            {
+                                picKnifeChopping.Visible = false;
+                                picKnifeRest.Visible = true;
+                            }
+                                break;
+                        case Keys.R:    //close menu
+                            picKnifeRest.Visible = false;
+                            picFingersHand.Visible = false;
+                            pnlCustomMenu.Visible = false;
+                            player.HeldItem = (int)MyEnums.ItemIDs.RawFingers;
+                            break;
+                    }
                     break;
                 case ((int)MyEnums.Station.Cake):       //cake station
+
+                    //keybinds
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Q:    //skulls
+                            if (!player.HeldCake.Skulls)
+                            {
+                                picCakeSkulls.Visible = true;
+                                player.HeldCake.Skulls = true;
+                            }
+                            break;
+                        case Keys.W:    //sigil
+                            if (!player.HeldCake.Sigil)
+                            {
+                                picCakeSigil.Visible = true;
+                                player.HeldCake.Sigil = true;
+                            }
+                            break;
+                        case Keys.E:    //cherries
+                            if (!player.HeldCake.Cherries)
+                            {
+                                picCakeCherries.Visible = true;
+                                player.HeldCake.Cherries = true;
+                            }
+                            break;
+                        case Keys.R:    //close menu
+                            //hide images
+                            picCakeBase.Visible = false;
+                            picCakeCherries.Visible = false;
+                            picCakeSigil.Visible = false;
+                            picCakeSkulls.Visible = false;
+                            pnlCustomMenu.Visible = false;
+
+                            //give cake to player
+                            player.HeldItem = (int)MyEnums.ItemIDs.Cake;
+                            break;
+                    }
                     break;
                 default:
                     break;

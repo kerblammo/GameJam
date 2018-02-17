@@ -12,6 +12,7 @@ namespace CookThulhu
     {
         public IceCream HeldIceCream { get; set; }
         public Cake HeldCake { get; set; }
+        public Fingers HeldFingers { get; set; }
         public int HeldItem { get; set; }
         public int Score { get; set; }
         public int OpenStation { get; set; }

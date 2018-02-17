@@ -43,10 +43,14 @@
             this.lblCustomizationCommand2 = new System.Windows.Forms.Label();
             this.lblCustomizationCommand1 = new System.Windows.Forms.Label();
             this.pnlCustomMenu = new System.Windows.Forms.Panel();
+            this.picCakeCherries = new System.Windows.Forms.PictureBox();
+            this.picCakeSigil = new System.Windows.Forms.PictureBox();
+            this.picCakeSkulls = new System.Windows.Forms.PictureBox();
             this.picIceCreamScoop3 = new System.Windows.Forms.PictureBox();
             this.picIceCreamScoop2 = new System.Windows.Forms.PictureBox();
             this.picIceCreamScoop1 = new System.Windows.Forms.PictureBox();
             this.picIceCreamCone = new System.Windows.Forms.PictureBox();
+            this.picCakeBase = new System.Windows.Forms.PictureBox();
             this.picCustomizationBackground = new System.Windows.Forms.PictureBox();
             this.picTrash = new System.Windows.Forms.PictureBox();
             this.picStationIceCream = new System.Windows.Forms.PictureBox();
@@ -69,6 +73,9 @@
             this.picPatron3 = new System.Windows.Forms.PictureBox();
             this.picPatron2 = new System.Windows.Forms.PictureBox();
             this.picPatron1 = new System.Windows.Forms.PictureBox();
+            this.picFingersHand = new System.Windows.Forms.PictureBox();
+            this.picKnifeRest = new System.Windows.Forms.PictureBox();
+            this.picKnifeChopping = new System.Windows.Forms.PictureBox();
             this.pnlPatrons.SuspendLayout();
             this.pnlMixers.SuspendLayout();
             this.pnlCakes.SuspendLayout();
@@ -77,10 +84,14 @@
             this.pnlIceCream.SuspendLayout();
             this.pnlTrash.SuspendLayout();
             this.pnlCustomMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeCherries)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeSigil)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeSkulls)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamScoop3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamScoop2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamScoop1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamCone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeBase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomizationBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picStationIceCream)).BeginInit();
@@ -103,6 +114,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPatron3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatron2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatron1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFingersHand)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picKnifeRest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picKnifeChopping)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPatrons
@@ -238,6 +252,12 @@
             // 
             // pnlCustomMenu
             // 
+            this.pnlCustomMenu.Controls.Add(this.picKnifeChopping);
+            this.pnlCustomMenu.Controls.Add(this.picKnifeRest);
+            this.pnlCustomMenu.Controls.Add(this.picFingersHand);
+            this.pnlCustomMenu.Controls.Add(this.picCakeCherries);
+            this.pnlCustomMenu.Controls.Add(this.picCakeSigil);
+            this.pnlCustomMenu.Controls.Add(this.picCakeSkulls);
             this.pnlCustomMenu.Controls.Add(this.picIceCreamScoop3);
             this.pnlCustomMenu.Controls.Add(this.picIceCreamScoop2);
             this.pnlCustomMenu.Controls.Add(this.picIceCreamScoop1);
@@ -247,6 +267,7 @@
             this.pnlCustomMenu.Controls.Add(this.lblCustomizationCommand2);
             this.pnlCustomMenu.Controls.Add(this.lblCustomizationCommand1);
             this.pnlCustomMenu.Controls.Add(this.picIceCreamCone);
+            this.pnlCustomMenu.Controls.Add(this.picCakeBase);
             this.pnlCustomMenu.Controls.Add(this.picCustomizationBackground);
             this.pnlCustomMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlCustomMenu.Name = "pnlCustomMenu";
@@ -254,10 +275,40 @@
             this.pnlCustomMenu.TabIndex = 13;
             this.pnlCustomMenu.Visible = false;
             // 
+            // picCakeCherries
+            // 
+            this.picCakeCherries.Image = global::CookThulhu.Properties.Resources.CakeCherries;
+            this.picCakeCherries.Location = new System.Drawing.Point(160, 164);
+            this.picCakeCherries.Name = "picCakeCherries";
+            this.picCakeCherries.Size = new System.Drawing.Size(200, 150);
+            this.picCakeCherries.TabIndex = 20;
+            this.picCakeCherries.TabStop = false;
+            this.picCakeCherries.Visible = false;
+            // 
+            // picCakeSigil
+            // 
+            this.picCakeSigil.Image = global::CookThulhu.Properties.Resources.CakeSigil;
+            this.picCakeSigil.Location = new System.Drawing.Point(160, 164);
+            this.picCakeSigil.Name = "picCakeSigil";
+            this.picCakeSigil.Size = new System.Drawing.Size(200, 150);
+            this.picCakeSigil.TabIndex = 19;
+            this.picCakeSigil.TabStop = false;
+            this.picCakeSigil.Visible = false;
+            // 
+            // picCakeSkulls
+            // 
+            this.picCakeSkulls.Image = global::CookThulhu.Properties.Resources.CakeSkulls;
+            this.picCakeSkulls.Location = new System.Drawing.Point(72, 183);
+            this.picCakeSkulls.Name = "picCakeSkulls";
+            this.picCakeSkulls.Size = new System.Drawing.Size(400, 150);
+            this.picCakeSkulls.TabIndex = 18;
+            this.picCakeSkulls.TabStop = false;
+            this.picCakeSkulls.Visible = false;
+            // 
             // picIceCreamScoop3
             // 
             this.picIceCreamScoop3.Image = global::CookThulhu.Properties.Resources.IceCreamScoopChocolate;
-            this.picIceCreamScoop3.Location = new System.Drawing.Point(182, 145);
+            this.picIceCreamScoop3.Location = new System.Drawing.Point(225, 176);
             this.picIceCreamScoop3.Name = "picIceCreamScoop3";
             this.picIceCreamScoop3.Size = new System.Drawing.Size(100, 50);
             this.picIceCreamScoop3.TabIndex = 16;
@@ -267,7 +318,7 @@
             // picIceCreamScoop2
             // 
             this.picIceCreamScoop2.Image = global::CookThulhu.Properties.Resources.IceCreamScoopChocolate;
-            this.picIceCreamScoop2.Location = new System.Drawing.Point(182, 167);
+            this.picIceCreamScoop2.Location = new System.Drawing.Point(225, 198);
             this.picIceCreamScoop2.Name = "picIceCreamScoop2";
             this.picIceCreamScoop2.Size = new System.Drawing.Size(100, 50);
             this.picIceCreamScoop2.TabIndex = 15;
@@ -277,7 +328,7 @@
             // picIceCreamScoop1
             // 
             this.picIceCreamScoop1.Image = global::CookThulhu.Properties.Resources.IceCreamScoopChocolate;
-            this.picIceCreamScoop1.Location = new System.Drawing.Point(182, 194);
+            this.picIceCreamScoop1.Location = new System.Drawing.Point(225, 225);
             this.picIceCreamScoop1.Name = "picIceCreamScoop1";
             this.picIceCreamScoop1.Size = new System.Drawing.Size(100, 50);
             this.picIceCreamScoop1.TabIndex = 14;
@@ -287,12 +338,22 @@
             // picIceCreamCone
             // 
             this.picIceCreamCone.Image = global::CookThulhu.Properties.Resources.IceCreamCone;
-            this.picIceCreamCone.Location = new System.Drawing.Point(182, 178);
+            this.picIceCreamCone.Location = new System.Drawing.Point(225, 209);
             this.picIceCreamCone.Name = "picIceCreamCone";
             this.picIceCreamCone.Size = new System.Drawing.Size(100, 200);
             this.picIceCreamCone.TabIndex = 13;
             this.picIceCreamCone.TabStop = false;
             this.picIceCreamCone.Visible = false;
+            // 
+            // picCakeBase
+            // 
+            this.picCakeBase.Image = global::CookThulhu.Properties.Resources.CakeDecoration;
+            this.picCakeBase.Location = new System.Drawing.Point(72, 145);
+            this.picCakeBase.Name = "picCakeBase";
+            this.picCakeBase.Size = new System.Drawing.Size(400, 300);
+            this.picCakeBase.TabIndex = 17;
+            this.picCakeBase.TabStop = false;
+            this.picCakeBase.Visible = false;
             // 
             // picCustomizationBackground
             // 
@@ -302,6 +363,7 @@
             this.picCustomizationBackground.Size = new System.Drawing.Size(800, 600);
             this.picCustomizationBackground.TabIndex = 0;
             this.picCustomizationBackground.TabStop = false;
+            this.picCustomizationBackground.Visible = false;
             // 
             // picTrash
             // 
@@ -506,6 +568,35 @@
             this.picPatron1.TabStop = false;
             this.picPatron1.Click += new System.EventHandler(this.picPatron1_Click);
             // 
+            // picFingersHand
+            // 
+            this.picFingersHand.Image = global::CookThulhu.Properties.Resources.FingersWhole;
+            this.picFingersHand.Location = new System.Drawing.Point(-40, 86);
+            this.picFingersHand.Name = "picFingersHand";
+            this.picFingersHand.Size = new System.Drawing.Size(400, 400);
+            this.picFingersHand.TabIndex = 21;
+            this.picFingersHand.TabStop = false;
+            this.picFingersHand.Visible = false;
+            // 
+            // picKnifeRest
+            // 
+            this.picKnifeRest.Image = global::CookThulhu.Properties.Resources.KnifeRest;
+            this.picKnifeRest.Location = new System.Drawing.Point(352, 91);
+            this.picKnifeRest.Name = "picKnifeRest";
+            this.picKnifeRest.Size = new System.Drawing.Size(183, 400);
+            this.picKnifeRest.TabIndex = 22;
+            this.picKnifeRest.TabStop = false;
+            // 
+            // picKnifeChopping
+            // 
+            this.picKnifeChopping.Image = global::CookThulhu.Properties.Resources.KnifeChopping;
+            this.picKnifeChopping.Location = new System.Drawing.Point(221, 112);
+            this.picKnifeChopping.Name = "picKnifeChopping";
+            this.picKnifeChopping.Size = new System.Drawing.Size(50, 400);
+            this.picKnifeChopping.TabIndex = 23;
+            this.picKnifeChopping.TabStop = false;
+            this.picKnifeChopping.Visible = false;
+            // 
             // frmStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,10 +624,14 @@
             this.pnlTrash.ResumeLayout(false);
             this.pnlCustomMenu.ResumeLayout(false);
             this.pnlCustomMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeCherries)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeSigil)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeSkulls)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamScoop3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamScoop2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamScoop1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIceCreamCone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCakeBase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomizationBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTrash)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picStationIceCream)).EndInit();
@@ -559,6 +654,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPatron3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatron2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatron1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFingersHand)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picKnifeRest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picKnifeChopping)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -605,6 +703,13 @@
         private System.Windows.Forms.PictureBox picIceCreamScoop2;
         private System.Windows.Forms.PictureBox picIceCreamScoop1;
         private System.Windows.Forms.PictureBox picIceCreamCone;
+        private System.Windows.Forms.PictureBox picCakeCherries;
+        private System.Windows.Forms.PictureBox picCakeSigil;
+        private System.Windows.Forms.PictureBox picCakeSkulls;
+        private System.Windows.Forms.PictureBox picCakeBase;
+        private System.Windows.Forms.PictureBox picKnifeChopping;
+        private System.Windows.Forms.PictureBox picKnifeRest;
+        private System.Windows.Forms.PictureBox picFingersHand;
     }
 }
 

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cake.cs" />
+    <Compile Include="Fingers.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +177,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IceCreamScoopMint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CakeDecoration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CakeSigil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CakeSkulls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CakeCherries.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FingersWhole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FingersChopped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KnifeChopping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KnifeRest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

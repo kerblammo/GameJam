@@ -118,8 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CakeCherries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CakeCherries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CakeDecoration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CakeDecoration.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CakeSigil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CakeSigil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CakeSkulls" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CakeSkulls.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CustomizationMenuBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CustomizationMenuBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FingersChopped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FingersChopped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FingersWhole" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FingersWhole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IceCreamCone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IceCreamCone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -132,6 +150,12 @@
   </data>
   <data name="IceCreamScoopMint" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IceCreamScoopMint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KnifeChopping" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KnifeChopping.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KnifeRest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KnifeRest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Mixer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mixer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

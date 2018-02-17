@@ -63,9 +63,69 @@ namespace CookThulhu.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CakeCherries {
+            get {
+                object obj = ResourceManager.GetObject("CakeCherries", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CakeDecoration {
+            get {
+                object obj = ResourceManager.GetObject("CakeDecoration", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CakeSigil {
+            get {
+                object obj = ResourceManager.GetObject("CakeSigil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CakeSkulls {
+            get {
+                object obj = ResourceManager.GetObject("CakeSkulls", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CustomizationMenuBackground {
             get {
                 object obj = ResourceManager.GetObject("CustomizationMenuBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FingersChopped {
+            get {
+                object obj = ResourceManager.GetObject("FingersChopped", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FingersWhole {
+            get {
+                object obj = ResourceManager.GetObject("FingersWhole", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +166,26 @@ namespace CookThulhu.Properties {
         internal static System.Drawing.Bitmap IceCreamScoopMint {
             get {
                 object obj = ResourceManager.GetObject("IceCreamScoopMint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap KnifeChopping {
+            get {
+                object obj = ResourceManager.GetObject("KnifeChopping", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap KnifeRest {
+            get {
+                object obj = ResourceManager.GetObject("KnifeRest", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
