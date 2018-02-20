@@ -15,6 +15,8 @@ namespace CookThulhu
         public Fingers HeldFingers { get; set; }
         public int HeldItem { get; set; }
         public int Score { get; set; }
+        public int Strikes { get; set; }
+        public int MaxStrikes { get; set; }
         public int OpenStation { get; set; }
 
         /// <summary>
@@ -25,6 +27,8 @@ namespace CookThulhu
             HeldItem = (int)MyEnums.ItemIDs.Empty;
             OpenStation = (int)MyEnums.Station.None;
             Score = 0;
+            Strikes = 0;
+            MaxStrikes = 3;
         }
     }
 }

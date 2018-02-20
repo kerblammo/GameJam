@@ -27,6 +27,9 @@ namespace CookThulhu
         Player player = new Player();
         List<Oven> ovens = new List<Oven>();
         List<Mixer> mixers = new List<Mixer>();
+        List<Patron> patrons = new List<Patron>();
+        int seconds;
+        int patronCooldown;
 
 
         /// <summary>
@@ -42,8 +45,10 @@ namespace CookThulhu
             int y = (int)MyEnums.PlayerYPos.Patron1;
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerUp;
-            
+
             //TODO: evaluate order 
+            EvaluateOrder(picPatron1, picPatiencePatron1);
+                
         }
 
         /// <summary>
@@ -60,7 +65,8 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerUp;
 
-            //TODO: evaluate order 
+            //evaluate order
+            EvaluateOrder(picPatron2, picPatiencePatron2);
         }
 
         /// <summary>
@@ -77,7 +83,8 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerUp;
 
-            //TODO: evaluate order
+            //evaluate order
+            EvaluateOrder(picPatron3, picPatiencePatron3);
         }
 
         /// <summary>
@@ -94,7 +101,83 @@ namespace CookThulhu
             picPlayer.Location = new Point(x, y);
             picPlayer.Image = Properties.Resources.PlayerUp;
 
-            //TODO: evaluate order
+            //evaluate order
+            EvaluateOrder(picPatron4, picPatiencePatron4);
+        }
+
+
+        /// <summary>
+        /// Check if player is holding an item that matches the patron's order
+        /// </summary>
+        /// <param name="pic"></param>
+        private void EvaluateOrder(PictureBox pic, PictureBox bar)
+        {
+            bool match = true;
+            //determine which patron to use
+            Patron patron = patrons[0];
+            foreach (Patron pat in patrons)
+            {
+                if (pat.Pic == pic)
+                {
+                    patron = pat;
+                    break;
+                }
+            }
+
+            //check if given item is valid type of meal
+            if (player.HeldItem != patron.DesiredMeal)
+            {
+                match = false;
+            }
+            //check if specifics of meal are valid
+            if (match)
+            {
+                switch (player.HeldItem)
+                {
+                    case (int)MyEnums.ItemIDs.Fingers:  //lady fingers
+                        //Lady fingers require no customization, so this is an automatic success
+                        break;
+                    case (int)MyEnums.ItemIDs.IceCream: //ice cream
+                        //check if there are any discrepancies
+                        if (player.HeldIceCream.ScoopsChocolate != patron.DesiredIceCream.ScoopsChocolate
+                            || player.HeldIceCream.ScoopsHazel != patron.DesiredIceCream.ScoopsHazel
+                            || player.HeldIceCream.ScoopsMint != patron.DesiredIceCream.ScoopsMint)
+                        {
+                            match = false;
+                        }
+                        break;
+                    case (int)MyEnums.ItemIDs.Cake: //cake
+                        //check if there are any discrepancies
+                        if (player.HeldCake.Cherries != patron.DesiredCake.Cherries
+                            || player.HeldCake.Skulls != patron.DesiredCake.Skulls
+                            || player.HeldCake.Sigil != patron.DesiredCake.Sigil)
+                        {
+                            match = false;
+                        }
+                        break;
+                }
+            }
+            //final rating: assign value or award strike
+            if (match)
+            {
+                player.Score += patron.Value;
+                MessageBox.Show("Success!");
+            }
+            else
+            {
+                MessageBox.Show("Strike!");
+                player.Strikes++;
+                if (player.Strikes >= player.MaxStrikes)
+                {
+                    MessageBox.Show("Game Over!");   //TODO: Dress this up a bit, option to reset game or quit
+                    tmrStep.Stop();
+                }
+            }
+            player.HeldItem = (int)MyEnums.ItemIDs.Empty;
+            pic.Visible = false;
+            bar.Visible = false;
+            patrons.Remove(patron);
+
         }
 
         /// <summary>
@@ -409,9 +492,14 @@ namespace CookThulhu
         /// </summary>
         private void ResetStage()
         {
+            //Start clock over
+            patronCooldown = 30;
+            seconds = 25;   //intentionally set to 25: gives player 5 seconds before first patron spawns
+            tmrStep.Start();
             //Create new player
             player = new Player();
             player.HeldItem = (int)MyEnums.ItemIDs.Empty;
+            player.Score = 0;
 
             //Create mixers
             for (int i = 0; i < 2; i++)
@@ -458,8 +546,101 @@ namespace CookThulhu
             }
         }
 
+        /// <summary>
+        /// Perform operations that are time dependant. EG Mixer/Oven progress, Patron patience, and spawning patrons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tmrStep_Tick(object sender, EventArgs e)
         {
+            //keep track of time
+            seconds++;
+            //check if patron needs to be spawned
+            if (seconds % patronCooldown == 0)
+            {
+                //check where (and if it is legal to) to spawn patron
+                bool spawn = false;
+                PictureBox patronLocation = picPatron1;
+                PictureBox patronBar = picPatiencePatron1;
+                if (!picPatron1.Visible)
+                {
+                    patronLocation = picPatron1;
+                    patronBar = picPatiencePatron1;
+                    spawn = true;
+                }
+                else if (!picPatron2.Visible)
+                {
+                    patronLocation = picPatron2;
+                    patronBar = picPatiencePatron2;
+                    spawn = true;
+                }
+                else if (!picPatron3.Visible)
+                {
+                    patronLocation = picPatron3;
+                    patronBar = picPatiencePatron3;
+                    spawn = true; 
+                }
+                else if (!picPatron4.Visible)
+                {
+                    patronLocation = picPatron4;
+                    patronBar = picPatiencePatron4;
+                    spawn = true;
+                }
+                if (spawn)
+                {
+                    if (patronCooldown > 18)
+                    {
+                        patronCooldown--;
+                    }
+                    
+                    patrons.Add(new Patron(patronLocation, patronBar));
+                    patronLocation.Visible = true;
+                    patronBar.Visible = true;
+                    
+                }
+            }
+
+            //call each patron's step event
+            List<Patron> removePatrons = new List<Patron>();
+            foreach (Patron patron in patrons)
+            {
+                if (patron.Step())
+                {
+                    removePatrons.Add(patron);
+                    patron.Pic.Visible = false;
+                    patron.PatienceBar.Visible = false;
+                    player.Strikes++;
+                    
+                }
+                if (patron.Patience > 80)
+                {
+                    patron.PatienceBar.Image = Properties.Resources.ProgressBar100;
+                }
+                else if (patron.Patience > 60)
+                {
+                    patron.PatienceBar.Image = Properties.Resources.ProgressBar80;
+                }
+                else if (patron.Patience > 40)
+                {
+                    patron.PatienceBar.Image = Properties.Resources.ProgressBar60;
+                }
+                else if (patron.Patience > 20)
+                {
+                    patron.PatienceBar.Image = Properties.Resources.ProgressBar40;
+                }
+                else if (patron.Patience > 0)
+                {
+                    patron.PatienceBar.Image = Properties.Resources.ProgressBar20;
+                }
+            }
+            //remove patrons that should be removed
+            for (int i = removePatrons.Count - 1; i >= 0; i--)
+            {
+                patrons.Remove(patrons[i]);
+            }
+
+
+            //call each mixer's step event
             foreach (Mixer mixer in mixers)
             {
                 //call step event
@@ -662,13 +843,18 @@ namespace CookThulhu
                             {
                                 picKnifeChopping.Visible = false;
                                 picKnifeRest.Visible = true;
+                                player.HeldFingers.DroppedKnife = true;
                             }
                                 break;
                         case Keys.R:    //close menu
-                            picKnifeRest.Visible = false;
-                            picFingersHand.Visible = false;
-                            pnlCustomMenu.Visible = false;
-                            player.HeldItem = (int)MyEnums.ItemIDs.RawFingers;
+                            if (player.HeldFingers.DroppedKnife)    //if player has dropped knife
+                            {
+                                picKnifeRest.Visible = false;
+                                picFingersHand.Visible = false;
+                                pnlCustomMenu.Visible = false;
+                                player.HeldItem = (int)MyEnums.ItemIDs.RawFingers;
+                            }
+                            
                             break;
                     }
                     break;
