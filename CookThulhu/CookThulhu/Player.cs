@@ -29,6 +29,7 @@ namespace CookThulhu
             Score = 0;
             Strikes = 0;
             MaxStrikes = 3;
+            
         }
     }
 }

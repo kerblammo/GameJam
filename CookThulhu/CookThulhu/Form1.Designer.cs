@@ -147,9 +147,9 @@
             // picStationCakes
             // 
             this.picStationCakes.Image = global::CookThulhu.Properties.Resources.StationCakes;
-            this.picStationCakes.Location = new System.Drawing.Point(75, 339);
+            this.picStationCakes.Location = new System.Drawing.Point(73, 345);
             this.picStationCakes.Name = "picStationCakes";
-            this.picStationCakes.Size = new System.Drawing.Size(48, 48);
+            this.picStationCakes.Size = new System.Drawing.Size(50, 119);
             this.picStationCakes.TabIndex = 2;
             this.picStationCakes.TabStop = false;
             this.picStationCakes.Click += new System.EventHandler(this.picStationCakes_Click);
@@ -157,7 +157,7 @@
             // picOven1
             // 
             this.picOven1.Image = ((System.Drawing.Image)(resources.GetObject("picOven1.Image")));
-            this.picOven1.Location = new System.Drawing.Point(194, 479);
+            this.picOven1.Location = new System.Drawing.Point(267, 479);
             this.picOven1.Name = "picOven1";
             this.picOven1.Size = new System.Drawing.Size(72, 58);
             this.picOven1.TabIndex = 3;
@@ -167,7 +167,7 @@
             // picProgressOven2
             // 
             this.picProgressOven2.Image = global::CookThulhu.Properties.Resources.ProgressBar0;
-            this.picProgressOven2.Location = new System.Drawing.Point(266, 455);
+            this.picProgressOven2.Location = new System.Drawing.Point(350, 457);
             this.picProgressOven2.Name = "picProgressOven2";
             this.picProgressOven2.Size = new System.Drawing.Size(48, 16);
             this.picProgressOven2.TabIndex = 11;
@@ -176,7 +176,7 @@
             // picProgressOven1
             // 
             this.picProgressOven1.Image = global::CookThulhu.Properties.Resources.ProgressBar0;
-            this.picProgressOven1.Location = new System.Drawing.Point(202, 455);
+            this.picProgressOven1.Location = new System.Drawing.Point(281, 457);
             this.picProgressOven1.Name = "picProgressOven1";
             this.picProgressOven1.Size = new System.Drawing.Size(48, 16);
             this.picProgressOven1.TabIndex = 10;
@@ -185,7 +185,7 @@
             // picOven2
             // 
             this.picOven2.Image = ((System.Drawing.Image)(resources.GetObject("picOven2.Image")));
-            this.picOven2.Location = new System.Drawing.Point(266, 479);
+            this.picOven2.Location = new System.Drawing.Point(339, 479);
             this.picOven2.Name = "picOven2";
             this.picOven2.Size = new System.Drawing.Size(72, 58);
             this.picOven2.TabIndex = 4;
@@ -284,6 +284,7 @@
             // 
             // picKnifeChopping
             // 
+            this.picKnifeChopping.BackColor = System.Drawing.Color.Transparent;
             this.picKnifeChopping.Image = global::CookThulhu.Properties.Resources.KnifeChopping;
             this.picKnifeChopping.Location = new System.Drawing.Point(221, 112);
             this.picKnifeChopping.Name = "picKnifeChopping";
@@ -294,6 +295,7 @@
             // 
             // picKnifeRest
             // 
+            this.picKnifeRest.BackColor = System.Drawing.Color.Transparent;
             this.picKnifeRest.Image = global::CookThulhu.Properties.Resources.KnifeRest;
             this.picKnifeRest.Location = new System.Drawing.Point(352, 91);
             this.picKnifeRest.Name = "picKnifeRest";
@@ -304,6 +306,7 @@
             // 
             // picCakeCherries
             // 
+            this.picCakeCherries.BackColor = System.Drawing.Color.Transparent;
             this.picCakeCherries.Image = global::CookThulhu.Properties.Resources.CakeCherries;
             this.picCakeCherries.Location = new System.Drawing.Point(160, 164);
             this.picCakeCherries.Name = "picCakeCherries";
@@ -314,6 +317,7 @@
             // 
             // picCakeSigil
             // 
+            this.picCakeSigil.BackColor = System.Drawing.Color.Transparent;
             this.picCakeSigil.Image = global::CookThulhu.Properties.Resources.CakeSigil;
             this.picCakeSigil.Location = new System.Drawing.Point(160, 164);
             this.picCakeSigil.Name = "picCakeSigil";
@@ -324,6 +328,7 @@
             // 
             // picCakeSkulls
             // 
+            this.picCakeSkulls.BackColor = System.Drawing.Color.Transparent;
             this.picCakeSkulls.Image = global::CookThulhu.Properties.Resources.CakeSkulls;
             this.picCakeSkulls.Location = new System.Drawing.Point(72, 183);
             this.picCakeSkulls.Name = "picCakeSkulls";
@@ -378,6 +383,7 @@
             // 
             // picCakeBase
             // 
+            this.picCakeBase.BackColor = System.Drawing.Color.Transparent;
             this.picCakeBase.Image = global::CookThulhu.Properties.Resources.CakeDecoration;
             this.picCakeBase.Location = new System.Drawing.Point(72, 145);
             this.picCakeBase.Name = "picCakeBase";
@@ -388,6 +394,7 @@
             // 
             // picFingersHand
             // 
+            this.picFingersHand.BackColor = System.Drawing.Color.Transparent;
             this.picFingersHand.Image = global::CookThulhu.Properties.Resources.FingersWhole;
             this.picFingersHand.Location = new System.Drawing.Point(-40, 86);
             this.picFingersHand.Name = "picFingersHand";
@@ -409,7 +416,7 @@
             // 
             this.picPlayer.BackColor = System.Drawing.Color.Transparent;
             this.picPlayer.Image = global::CookThulhu.Properties.Resources.PlayerDown;
-            this.picPlayer.Location = new System.Drawing.Point(361, 259);
+            this.picPlayer.Location = new System.Drawing.Point(366, 269);
             this.picPlayer.Name = "picPlayer";
             this.picPlayer.Size = new System.Drawing.Size(64, 128);
             this.picPlayer.TabIndex = 1;
@@ -487,7 +494,7 @@
             // 
             this.picPatiencePatron1.BackColor = System.Drawing.Color.Transparent;
             this.picPatiencePatron1.Image = global::CookThulhu.Properties.Resources.ProgressBar100;
-            this.picPatiencePatron1.Location = new System.Drawing.Point(129, 136);
+            this.picPatiencePatron1.Location = new System.Drawing.Point(136, 136);
             this.picPatiencePatron1.Name = "picPatiencePatron1";
             this.picPatiencePatron1.Size = new System.Drawing.Size(48, 16);
             this.picPatiencePatron1.TabIndex = 10;
@@ -498,7 +505,7 @@
             // 
             this.picPatiencePatron2.BackColor = System.Drawing.Color.Transparent;
             this.picPatiencePatron2.Image = global::CookThulhu.Properties.Resources.ProgressBar100;
-            this.picPatiencePatron2.Location = new System.Drawing.Point(291, 137);
+            this.picPatiencePatron2.Location = new System.Drawing.Point(298, 137);
             this.picPatiencePatron2.Name = "picPatiencePatron2";
             this.picPatiencePatron2.Size = new System.Drawing.Size(48, 16);
             this.picPatiencePatron2.TabIndex = 11;
@@ -509,7 +516,7 @@
             // 
             this.picPatiencePatron3.BackColor = System.Drawing.Color.Transparent;
             this.picPatiencePatron3.Image = global::CookThulhu.Properties.Resources.ProgressBar100;
-            this.picPatiencePatron3.Location = new System.Drawing.Point(449, 136);
+            this.picPatiencePatron3.Location = new System.Drawing.Point(456, 136);
             this.picPatiencePatron3.Name = "picPatiencePatron3";
             this.picPatiencePatron3.Size = new System.Drawing.Size(48, 16);
             this.picPatiencePatron3.TabIndex = 12;
@@ -520,7 +527,7 @@
             // 
             this.picPatiencePatron4.BackColor = System.Drawing.Color.Transparent;
             this.picPatiencePatron4.Image = global::CookThulhu.Properties.Resources.ProgressBar100;
-            this.picPatiencePatron4.Location = new System.Drawing.Point(609, 136);
+            this.picPatiencePatron4.Location = new System.Drawing.Point(615, 136);
             this.picPatiencePatron4.Name = "picPatiencePatron4";
             this.picPatiencePatron4.Size = new System.Drawing.Size(48, 16);
             this.picPatiencePatron4.TabIndex = 13;
@@ -557,6 +564,7 @@
             this.Controls.Add(this.picMixer1);
             this.Controls.Add(this.picPlayer);
             this.Name = "frmStage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cookthulhu";
             this.TransparencyKey = System.Drawing.Color.OrangeRed;
             this.Load += new System.EventHandler(this.frmStage_Load);

@@ -123,7 +123,11 @@ namespace CookThulhu
                     break;
                 }
             }
-
+            //if player is holding a plain cake, treat it as a cooked one
+            if (player.HeldItem == (int)MyEnums.ItemIDs.CookedCake)
+            {
+                player.HeldItem = (int)MyEnums.ItemIDs.Cake;
+            }
             //check if given item is valid type of meal
             if (player.HeldItem != patron.DesiredMeal)
             {
@@ -167,11 +171,7 @@ namespace CookThulhu
             {
                 MessageBox.Show("Strike!");
                 player.Strikes++;
-                if (player.Strikes >= player.MaxStrikes)
-                {
-                    MessageBox.Show("Game Over!");   //TODO: Dress this up a bit, option to reset game or quit
-                    tmrStep.Stop();
-                }
+                
             }
             player.HeldItem = (int)MyEnums.ItemIDs.Empty;
             pic.Visible = false;
@@ -232,7 +232,6 @@ namespace CookThulhu
             {
                 player.HeldItem = (int)MyEnums.ItemIDs.RawCake;
                 //TODO: Display held item via picture box
-                MessageBox.Show("Holding batter");
             }
         }
 
@@ -374,12 +373,10 @@ namespace CookThulhu
                 if (ovens[iOven].CurrentItem == (int)MyEnums.ItemIDs.RawCake)
                 {
                     player.HeldItem = (int)MyEnums.ItemIDs.CookedCake;
-                    MessageBox.Show("Holding cake");
                 }
                 else if (ovens[iOven].CurrentItem == (int)MyEnums.ItemIDs.RawFingers)
                 {
                     player.HeldItem = (int)MyEnums.ItemIDs.Fingers;
-                    MessageBox.Show("Holding fingers");
                 }
 
                 //TODO: Display held item via picture box
@@ -500,8 +497,11 @@ namespace CookThulhu
             player = new Player();
             player.HeldItem = (int)MyEnums.ItemIDs.Empty;
             player.Score = 0;
+            picPlayer.Location = new Point(365, 300);
+            picPlayer.Image = Properties.Resources.PlayerDown;
 
             //Create mixers
+            mixers.Clear();
             for (int i = 0; i < 2; i++)
             {
                 Mixer mixer = new Mixer();
@@ -521,6 +521,7 @@ namespace CookThulhu
             }
 
             //Create ovens
+            ovens.Clear();
             for (int i = 0; i < 2; i++)
             {
                 Oven oven = new Oven();
@@ -588,7 +589,7 @@ namespace CookThulhu
                 {
                     if (patronCooldown > 18)
                     {
-                        patronCooldown--;
+                        patronCooldown-= 3;
                     }
                     
                     patrons.Add(new Patron(patronLocation, patronBar));
@@ -742,6 +743,25 @@ namespace CookThulhu
                         }
                         break;
                 }
+            }
+
+            //check if game is over
+            if (player.Strikes >= player.MaxStrikes)
+            {
+                tmrStep.Stop();
+                DialogResult = MessageBox.Show("You have failed to keep your patrons from insanity. \nFinal Score: " + player.Score + "\n\nWould you like to play again?",
+                                "GAME OVER", 
+                                MessageBoxButtons.YesNo);
+                if (DialogResult == DialogResult.No)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    ResetStage();
+                }
+                
+                
             }
         }
 

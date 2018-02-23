@@ -109,34 +109,11 @@ namespace CookThulhu
         {
             //initial values
             Patience = 100;
-            PatienceStep = 4;
-            //determine what meal the patron desires
-            Value = 0;
-            Random rand = new Random();
-            int selection = rand.Next(1, 4);    //range 1-3
-            switch (selection)
-            {
-                case 1: //ladyfingers
-                    DesiredMeal = (int)MyEnums.ItemIDs.Fingers;
-                    Value = 50;
-                    MessageBox.Show("Fingers");
-                    break;
-                case 2: //cake
-                    DesiredMeal = (int)MyEnums.ItemIDs.Cake;
-                    DesiredCake = RandomCake();
-                    Value = 100;
-                    MessageBox.Show("Cake\nSkulls:" + DesiredCake.Skulls + "\nSigil:" + DesiredCake.Sigil + "\nCherries:" + DesiredCake.Cherries);
-                    break;
-                case 3: //icecream
-                    DesiredMeal = (int)MyEnums.ItemIDs.IceCream;
-                    DesiredIceCream = RandomIceCream();
-                    Value = 75;
-                    MessageBox.Show("IceCream\nChoc:" + DesiredIceCream.ScoopsChocolate + "\nMint" + DesiredIceCream.ScoopsMint + "\nHazel:" + DesiredIceCream.ScoopsHazel);
-                    break;
-            }
+            PatienceStep = 4;Random rand = new Random();
+            
 
             //determine which patron to show
-            selection = rand.Next(1, 5);    //range 1-4
+            int selection = rand.Next(1, 5);    //range 1-4
             switch (selection)
             {
                 case 1:
@@ -157,6 +134,30 @@ namespace CookThulhu
             Pic = pic;
             PatienceBar = bar;
             bar.Image = Properties.Resources.ProgressBar100;
+
+            //determine what meal the patron desires
+            Value = 0;
+            selection = rand.Next(1, 4);    //range 1-3
+            switch (selection)
+            {
+                case 1: //ladyfingers
+                    DesiredMeal = (int)MyEnums.ItemIDs.Fingers;
+                    Value = 50;
+                    MessageBox.Show("New Order: \nLady Fingers");
+                    break;
+                case 2: //cake
+                    DesiredMeal = (int)MyEnums.ItemIDs.Cake;
+                    DesiredCake = RandomCake();
+                    Value = 100;
+                    MessageBox.Show("New Order: \nDevil's Food Cake\n\nSkulls:" + DesiredCake.Skulls + "\nPentagram:" + DesiredCake.Sigil + "\nCherries:" + DesiredCake.Cherries);
+                    break;
+                case 3: //icecream
+                    DesiredMeal = (int)MyEnums.ItemIDs.IceCream;
+                    DesiredIceCream = RandomIceCream();
+                    Value = 75;
+                    MessageBox.Show("New Order: \nEye Scream\n\nChoc:" + DesiredIceCream.ScoopsChocolate + "\nMint" + DesiredIceCream.ScoopsMint + "\nHazel:" + DesiredIceCream.ScoopsHazel);
+                    break;
+            }
 
         }
 

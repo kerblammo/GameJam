@@ -43,8 +43,8 @@ namespace CookThulhu
         {
             Mixer1 = 142,
             Mixer2 = 142,
-            Oven1 = 200,
-            Oven2 = 268,
+            Oven1 = 268,
+            Oven2 = 339,
             Oven3 = 342,
             Oven4 = 408,
             Patron1 = 134,
