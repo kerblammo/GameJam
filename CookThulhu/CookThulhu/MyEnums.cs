@@ -41,20 +41,20 @@ namespace CookThulhu
         /// </summary>
         public enum PlayerXPos
         {
-            Mixer1 = 138,
-            Mixer2 = 138,
-            Oven1 = 212,
-            Oven2 = 277,
+            Mixer1 = 142,
+            Mixer2 = 142,
+            Oven1 = 200,
+            Oven2 = 268,
             Oven3 = 342,
             Oven4 = 408,
-            Patron1 = 160,
-            Patron2 = 256,
-            Patron3 = 352,
-            Patron4 = 448,
+            Patron1 = 134,
+            Patron2 = 291,
+            Patron3 = 459,
+            Patron4 = 609,
             StationCakes = 142,
-            StationChopping = 562,
-            StationIceCream = 586,
-            Trash = 586
+            StationChopping = 464,
+            StationIceCream = 602,
+            Trash = 602
 
         }
 
@@ -64,20 +64,20 @@ namespace CookThulhu
         /// </summary>
         public enum PlayerYPos
         {
-            Mixer1 = 156,
-            Mixer2 = 232,
-            Oven1 = 398,
-            Oven2 = 398,
+            Mixer1 = 128,
+            Mixer2 = 173,
+            Oven1 = 334,
+            Oven2 = 334,
             Oven3 = 398,
             Oven4 = 398,
-            Patron1 = 128,
-            Patron2 = 128,
-            Patron3 = 128,
-            Patron4 = 128,
-            StationCakes = 381,
-            StationChopping = 400,
-            StationIceCream = 219,
-            Trash = 381
+            Patron1 = 153,
+            Patron2 = 153,
+            Patron3 = 153,
+            Patron4 = 153,
+            StationCakes = 310,
+            StationChopping = 334,
+            StationIceCream = 248,
+            Trash = 346
         }
 
         /// <summary>

@@ -521,10 +521,10 @@ namespace CookThulhu
             }
 
             //Create ovens
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Oven oven = new Oven();
-                PictureBox pic;
+                PictureBox pic = picProgressOven2;
                 switch (i)
                 {
                     case 0:
@@ -534,11 +534,9 @@ namespace CookThulhu
                         pic = picProgressOven2;
                         break;
                     case 2:
-                        pic = picProgressOven3;
                         break;
-                    case 3:
                     default:
-                        pic = picProgressOven4;
+                        pic = picProgressOven2;
                         break;
                 }
                 oven.ProgressBar = pic;
