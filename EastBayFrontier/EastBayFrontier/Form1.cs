@@ -14,6 +14,13 @@ namespace EastBayFrontier
     /// Author: Peter Adam
     /// Start Date: March 16, 2018
     /// This is the form that the player will be interacting with. 
+    /// 
+    /// v1.0
+    /// March 17, 2018
+    /// The player may now select a faction to start producing gold.
+    /// The selected faction will produce gold while they have hooch.
+    /// Producing gold consumes hooch, while not producing gold recovers it.
+    /// Player's gold and hooch values are displayed
     /// </summary>
     public partial class frmMain : Form
     {
