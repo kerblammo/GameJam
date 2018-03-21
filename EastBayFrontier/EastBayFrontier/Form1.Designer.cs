@@ -39,10 +39,19 @@
             this.lblWhiskey = new System.Windows.Forms.Label();
             this.tmrStep = new System.Windows.Forms.Timer(this.components);
             this.picNinja = new System.Windows.Forms.PictureBox();
+            this.grpNinja = new System.Windows.Forms.GroupBox();
+            this.btnNinjaValue = new System.Windows.Forms.Button();
+            this.grpPirate = new System.Windows.Forms.GroupBox();
             this.picPirate = new System.Windows.Forms.PictureBox();
+            this.grpCowboy = new System.Windows.Forms.GroupBox();
             this.picCowboy = new System.Windows.Forms.PictureBox();
+            this.tipButtons = new System.Windows.Forms.ToolTip(this.components);
+            this.lblNinjaUpgradeValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picNinja)).BeginInit();
+            this.grpNinja.SuspendLayout();
+            this.grpPirate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPirate)).BeginInit();
+            this.grpCowboy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCowboy)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,39 +135,91 @@
             // 
             // picNinja
             // 
-            this.picNinja.Location = new System.Drawing.Point(13, 94);
+            this.picNinja.Location = new System.Drawing.Point(6, 19);
             this.picNinja.Name = "picNinja";
             this.picNinja.Size = new System.Drawing.Size(159, 99);
             this.picNinja.TabIndex = 8;
             this.picNinja.TabStop = false;
             this.picNinja.Click += new System.EventHandler(this.Faction_Click);
             // 
+            // grpNinja
+            // 
+            this.grpNinja.Controls.Add(this.lblNinjaUpgradeValue);
+            this.grpNinja.Controls.Add(this.btnNinjaValue);
+            this.grpNinja.Controls.Add(this.picNinja);
+            this.grpNinja.Location = new System.Drawing.Point(12, 85);
+            this.grpNinja.Name = "grpNinja";
+            this.grpNinja.Size = new System.Drawing.Size(177, 297);
+            this.grpNinja.TabIndex = 11;
+            this.grpNinja.TabStop = false;
+            this.grpNinja.Text = "Ninjas";
+            // 
+            // btnNinjaValue
+            // 
+            this.btnNinjaValue.Location = new System.Drawing.Point(4, 149);
+            this.btnNinjaValue.Name = "btnNinjaValue";
+            this.btnNinjaValue.Size = new System.Drawing.Size(159, 32);
+            this.btnNinjaValue.TabIndex = 9;
+            this.btnNinjaValue.Text = "Earning Value";
+            this.tipButtons.SetToolTip(this.btnNinjaValue, "Testing");
+            this.btnNinjaValue.UseVisualStyleBackColor = true;
+            this.btnNinjaValue.Click += new System.EventHandler(this.btnNinjaValue_Click);
+            // 
+            // grpPirate
+            // 
+            this.grpPirate.Controls.Add(this.picPirate);
+            this.grpPirate.Location = new System.Drawing.Point(196, 85);
+            this.grpPirate.Name = "grpPirate";
+            this.grpPirate.Size = new System.Drawing.Size(177, 297);
+            this.grpPirate.TabIndex = 12;
+            this.grpPirate.TabStop = false;
+            this.grpPirate.Text = "Pirates";
+            // 
             // picPirate
             // 
-            this.picPirate.Location = new System.Drawing.Point(196, 94);
+            this.picPirate.Location = new System.Drawing.Point(6, 19);
             this.picPirate.Name = "picPirate";
             this.picPirate.Size = new System.Drawing.Size(159, 99);
-            this.picPirate.TabIndex = 9;
+            this.picPirate.TabIndex = 8;
             this.picPirate.TabStop = false;
             this.picPirate.Click += new System.EventHandler(this.Faction_Click);
             // 
+            // grpCowboy
+            // 
+            this.grpCowboy.Controls.Add(this.picCowboy);
+            this.grpCowboy.Location = new System.Drawing.Point(379, 85);
+            this.grpCowboy.Name = "grpCowboy";
+            this.grpCowboy.Size = new System.Drawing.Size(177, 297);
+            this.grpCowboy.TabIndex = 12;
+            this.grpCowboy.TabStop = false;
+            this.grpCowboy.Text = "Cowboys";
+            // 
             // picCowboy
             // 
-            this.picCowboy.Location = new System.Drawing.Point(377, 94);
+            this.picCowboy.Location = new System.Drawing.Point(6, 19);
             this.picCowboy.Name = "picCowboy";
             this.picCowboy.Size = new System.Drawing.Size(159, 99);
-            this.picCowboy.TabIndex = 10;
+            this.picCowboy.TabIndex = 8;
             this.picCowboy.TabStop = false;
             this.picCowboy.Click += new System.EventHandler(this.Faction_Click);
+            // 
+            // lblNinjaUpgradeValue
+            // 
+            this.lblNinjaUpgradeValue.AutoSize = true;
+            this.lblNinjaUpgradeValue.Location = new System.Drawing.Point(8, 133);
+            this.lblNinjaUpgradeValue.Name = "lblNinjaUpgradeValue";
+            this.lblNinjaUpgradeValue.Size = new System.Drawing.Size(58, 13);
+            this.lblNinjaUpgradeValue.TabIndex = 10;
+            this.lblNinjaUpgradeValue.Text = "Cost: 30gp";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 261);
-            this.Controls.Add(this.picCowboy);
-            this.Controls.Add(this.picPirate);
-            this.Controls.Add(this.picNinja);
+            this.ClientSize = new System.Drawing.Size(571, 394);
+            this.Controls.Add(this.grpCowboy);
+            this.Controls.Add(this.grpPirate);
+            this.Controls.Add(this.grpNinja);
             this.Controls.Add(this.lblWhiskey);
             this.Controls.Add(this.lblRum);
             this.Controls.Add(this.lblSake);
@@ -170,7 +231,11 @@
             this.Name = "frmMain";
             this.Text = "East Bay Frontier";
             ((System.ComponentModel.ISupportInitialize)(this.picNinja)).EndInit();
+            this.grpNinja.ResumeLayout(false);
+            this.grpNinja.PerformLayout();
+            this.grpPirate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picPirate)).EndInit();
+            this.grpCowboy.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picCowboy)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,8 +254,14 @@
         private System.Windows.Forms.Label lblWhiskey;
         private System.Windows.Forms.PictureBox picNinja;
         private System.Windows.Forms.Timer tmrStep;
+        private System.Windows.Forms.GroupBox grpNinja;
+        private System.Windows.Forms.GroupBox grpPirate;
         private System.Windows.Forms.PictureBox picPirate;
+        private System.Windows.Forms.GroupBox grpCowboy;
         private System.Windows.Forms.PictureBox picCowboy;
+        private System.Windows.Forms.Button btnNinjaValue;
+        private System.Windows.Forms.ToolTip tipButtons;
+        private System.Windows.Forms.Label lblNinjaUpgradeValue;
     }
 }
 

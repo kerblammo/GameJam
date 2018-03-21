@@ -33,6 +33,8 @@ namespace EastBayFrontier
         public int RecoverValue { get; set; }          //How much hooch drains
         public EBFController ScoreKeeper { get; set; }  //Controller that keeps track of score
         public Animator Animation { get; set; }         //Faction's animation controller
+        public UpgradeData EarningUpgrade { get; set;}  //Data re: earnings' upgrades
+        public UpgradeData HoochUpgrade { get; set; }   //Data re: hooch upgrades
         #endregion
 
         /// <summary>
@@ -108,6 +110,23 @@ namespace EastBayFrontier
 
         }
 
+        /// <summary>
+        /// Purchase an upgrade for the earning power
+        /// </summary>
+        public bool PurchaseEarningUpgrade()
+        {
+            bool purchaseMade = false;
+            if (ScoreKeeper.Gold >= EarningUpgrade.Cost)
+            {
+                purchaseMade = true;
+                ScoreKeeper.Gold -= EarningUpgrade.Cost;
+                Value = EarningUpgrade.Value;
+                EarningUpgrade.Value *= 2;
+                EarningUpgrade.Cost *= 2;
+            }
+            return purchaseMade;
+        }
+
         
 
         /// <summary>
@@ -127,6 +146,14 @@ namespace EastBayFrontier
             RecoverThreshold = 100;
             RecoverValue = 1;
             Animation = new Animator();
+
+            //upgrade info
+            EarningUpgrade = new UpgradeData();
+            EarningUpgrade.Cost = 30;
+            EarningUpgrade.Value = 2;
+            HoochUpgrade = new UpgradeData();
+            HoochUpgrade.Cost = 30;
+            HoochUpgrade.Value = 20;
         }
     }
 }

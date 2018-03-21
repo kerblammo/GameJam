@@ -23,6 +23,7 @@ namespace EastBayFrontier
         public frmMain()
         {
             InitializeComponent();
+            
             //Create the Controller
             ScoreKeeper = new EBFController();
             ScoreKeeper.Display = this;
@@ -57,6 +58,8 @@ namespace EastBayFrontier
             ScoreKeeper.Cowboy.Animation.PicBox = picCowboy;
             picCowboy.Image = ScoreKeeper.Cowboy.Animation.Sprite[0];
 
+            //Set tooltips
+            SetFormTooltips();
 
         }
 
@@ -90,6 +93,35 @@ namespace EastBayFrontier
         {
             PictureBox pic = (PictureBox)sender;
             ScoreKeeper.ClickFaction(pic);
+        }
+
+        /// <summary>
+        /// Initialize the values of form's tooltips
+        /// </summary>
+        public void SetFormTooltips()
+        {
+            tipButtons.SetToolTip(btnNinjaValue,
+                    "Doubles the Earning value of Ninja.\nFrom " + ScoreKeeper.Ninja.Value +
+                    " to " + ScoreKeeper.Ninja.EarningUpgrade.Value);
+        }
+
+        /// <summary>
+        /// Purchase an upgrade for the Ninja which increases their value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// TODO: Make this more robust so it can be used on other buttons and their respective factions.
+        /// EG: see the Faction_Click event
+        private void btnNinjaValue_Click(object sender, EventArgs e)
+        {
+            
+            if (ScoreKeeper.Ninja.PurchaseEarningUpgrade())
+            {
+                tipButtons.SetToolTip(btnNinjaValue,
+                    "Doubles the Earning value of Ninja.\nFrom " + ScoreKeeper.Ninja.Value +
+                    " to " + ScoreKeeper.Ninja.EarningUpgrade.Value);
+                lblNinjaUpgradeValue.Text = "Cost: " + ScoreKeeper.Ninja.EarningUpgrade.Cost + "gp";
+            }
         }
     }
 }
